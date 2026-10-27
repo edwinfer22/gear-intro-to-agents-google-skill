@@ -3,132 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agents & Gemini Enterprise - Infografía Interactiva</title>
+    <title>AI Agents & Gemini Enterprise - Infografía Interactiva Premium</title>
     <!-- Tailwind CSS -->
     <script src="https://tailwindcss.com"></script>
+    <!-- Íconos Premium -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Librerías para conversión exacta a PDF -->
+    <!-- Librerías de conversión a PDF -->
     <script src="https://cloudflare.com"></script>
     <script src="https://cloudflare.com"></script>
+    <style>
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased">
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
 
-    <!-- Encabezado con Botón de Descarga -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <!-- Encabezado de Navegación Futurista -->
+    <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="flex gap-1 bg-slate-100 p-2 rounded-full">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse delay-75"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse delay-150"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse delay-200"></span>
+                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800">
+                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span>
+                    <span class="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7]"></span>
+                    <span class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
                         AI Agents & Gemini Enterprise 
-                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">GEAR Ready</span>
+                        <span class="text-[10px] bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
                     </h1>
-                    <p class="text-xs text-slate-500">Infraestructura y despliegue de agentes autónomos en la nube</p>
+                    <p class="text-xs text-slate-400 font-medium">Arquitectura avanzada y despliegue automatizado de agentes autónomos</p>
                 </div>
             </div>
             
-            <!-- Botón de Descarga idéntico a la imagen -->
-            <button onclick="downloadPDF()" class="bg-white border border-slate-300 text-slate-700 font-medium text-xs px-4 py-2 rounded-lg hover:bg-slate-50 transition-all flex items-center gap-2 shadow-sm">
-                <i class="fa-solid fa-download text-slate-500"></i> Descargar PDF Completo
+            <button onclick="downloadPDF()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
+                <i class="fa-solid fa-cloud-arrow-down text-sm"></i> Descargar Reporte PDF
             </button>
         </div>
 
-        <!-- Menú de pestañas idéntico al diseño de tu foto -->
-        <div class="bg-slate-50 border-t border-slate-200 overflow-x-auto">
-            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-2.5 text-xs font-semibold whitespace-nowrap">
-                <button onclick="switchTab(1)" id="tab-1" class="px-4 py-2 rounded-full transition-all bg-blue-600 text-white shadow-sm">1. Era Agéntica</button>
-                <button onclick="switchTab(2)" id="tab-2" class="px-4 py-2 rounded-full transition-all text-slate-600 hover:bg-slate-200/60">2. Multimodalidad</button>
-                <button onclick="switchTab(3)" id="tab-3" class="px-4 py-2 rounded-full transition-all text-slate-600 hover:bg-slate-200/60">3. MCP & Gobernanza</button>
-                <button onclick="switchTab(4)" id="tab-4" class="px-4 py-2 rounded-full transition-all text-slate-600 hover:bg-slate-200/60">4. Cloud Run GPUs</button>
-                <button onclick="switchTab(5)" id="tab-5" class="px-4 py-2 rounded-full transition-all text-slate-600 hover:bg-slate-200/60">5. Web AI</button>
-                <button onclick="switchTab(6)" id="tab-6" class="px-4 py-2 rounded-full transition-all text-slate-600 hover:bg-slate-200/60">6. Android & Flutter</button>
+        <!-- Barra de pestañas táctiles interactivas -->
+        <div class="bg-slate-950 border-t border-slate-800/60 overflow-x-auto scrollbar-none">
+            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container">
+                <!-- Se inyecta dinámicamente con estilos responsivos -->
             </nav>
         </div>
     </header>
 
-    <!-- Área de Captura de la Infografía (Esto es lo que se descargará en el PDF) -->
-    <main id="infographic-area" class="max-w-7xl mx-auto px-4 sm:px-6 py-8 bg-slate-50">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Lienzo de la Infografía -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div id="infographic-area" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-slate-900 p-2 rounded-2xl">
             
-            <!-- Columna Izquierda: Anatomía de la Tecnología -->
-            <section class="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <div class="mb-4">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-orange-600 bg-orange-50 px-2 py-1 rounded">Ingeniería & Blueprint</span>
+            <!-- Columna Izquierda: Anatomía Dinámica -->
+            <section class="lg:col-span-5 bg-gradient-to-b from-slate-950 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+                <div class="absolute -top-24 -left-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="mb-4 flex justify-between items-center">
+                    <span class="text-[10px] uppercase font-black tracking-widest text-blue-400 bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/20">Ingeniería Core</span>
+                    <span class="text-xs font-mono text-slate-500" id="module-index">MÓDULO 01</span>
                 </div>
-                <h2 class="text-xl font-black text-slate-900 tracking-tight" id="left-title">Anatomía del Módulo</h2>
-                <p class="text-xs text-slate-500 mt-2 leading-relaxed" id="left-desc">Estructura fundamental del sistema agéntico empresarial.</p>
+                <h2 class="text-2xl font-black text-white tracking-tight custom-transition" id="left-title">Anatomía del Módulo</h2>
+                <p class="text-sm text-slate-400 mt-3 leading-relaxed custom-transition" id="left-desc">Selecciona un tema para explorar los componentes del sistema.</p>
                 
-                <!-- Lista de Componentes del Core -->
-                <div class="mt-6 space-y-3" id="left-list">
-                    <!-- Dinámico -->
-                </div>
+                <!-- Lista de componentes dinámicos -->
+                <div class="mt-8 space-y-4" id="left-list"></div>
             </section>
 
-            <!-- Columna Derecha: Pilares Clave de Implementación -->
-            <section class="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <!-- Columna Derecha: Pilares Interactivos -->
+            <section class="lg:col-span-7 bg-gradient-to-b from-slate-950 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+                <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="mb-4">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-blue-600 bg-blue-50 px-2 py-1 rounded">Estrategia de Despliegue</span>
+                    <span class="text-[10px] uppercase font-black tracking-widest text-purple-400 bg-purple-500/10 px-3 py-1 rounded-md border border-purple-500/20">Despliegue Empresarial</span>
                 </div>
-                <h2 class="text-xl font-black text-slate-900 tracking-tight" id="right-title">Los Pilares de un Agente Real</h2>
-                <p class="text-xs text-slate-500 mt-1 mb-6">Especificaciones requeridas para pasar de fases de prueba a entornos de producción a gran escala.</p>
+                <h2 class="text-2xl font-black text-white tracking-tight" id="right-title">Pilares de Implementación</h2>
+                <p class="text-xs text-slate-400 mt-1 mb-8" id="right-subtitle">Arquitectura técnica requerida para la estabilidad en entornos de producción.</p>
                 
-                <!-- Tarjetas de Características de la Plantilla -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="right-grid">
-                    <!-- Dinámico -->
-                </div>
+                <!-- Cuadrícula de Tarjetas Llamativas -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="right-grid"></div>
             </section>
 
         </div>
     </main>
 
-    <!-- Lógica Exclusiva para Datos e Inferencia -->
+    <!-- Footer Corporativo -->
+    <footer class="max-w-7xl mx-auto px-6 py-8 mt-12 border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-blue-500"></i>
+            <span>Google Cloud GEAR Program Hub - Entorno Seguro de Datos</span>
+        </div>
+        <div class="font-mono text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800/80">
+            Desplegado por: <span class="text-blue-400 font-bold">edwinf.aldanaa</span>
+        </div>
+    </footer>
+
+    <!-- Lógica de Control e Interactividad Completa -->
     <script>
         const modulesData = {
             1: {
+                navLabel: "1. Era Agéntica",
                 title: "La Era de la IA Agéntica y Agentes Autónomos",
-                leftDesc: "Representa el salto definitivo desde las respuestas lineales estáticas hacia sistemas independientes con bucles de razonamiento ReAct (Reasoning and Acting).",
+                leftDesc: "Representa el salto cualitativo desde los flujos de ejecución rígidos basados en prompts hacia entidades de software capaces de operar mediante razonamiento autónomo.",
                 leftItems: [
-                    { icon: "fa-brain", title: "Loop de Razonamiento", detail: "Pensar, planificar acciones y autoevaluar resultados de forma iterativa." },
-                    { icon: "fa-rocket", title: "Ejecución de Herramientas", detail: "Capacidad nativa de llamar APIs, bases de datos y scripts externos." },
-                    { icon: "fa-database", title: "Memoria Contextual", detail: "Almacenamiento del estado conversacional y persistencia de memoria." }
+                    { icon: "fa-brain", title: "Loop del Framework ReAct", detail: "Metodología estructurada de razonamiento y acción recursiva inmediata." },
+                    { icon: "fa-screwdriver-wrench", title: "Tool Calling Nativo", detail: "Habilidad para seleccionar y ejecutar APIs o consultas de bases de datos de forma lógica." },
+                    { icon: "fa-box-archive", title: "Persistencia de Memoria", detail: "Almacenamiento contextual a corto y largo plazo para gestionar flujos complejos." }
                 ],
-                rightTitle: "Pilares del Agente Autónomo",
+                rightTitle: "Arquitectura de Agentes Autónomos",
+                rightSubtitle: "Mapeo tecnológico para habilitar operaciones continuas sin intervención humana directa.",
                 rightCards: [
-                    { icon: "fa-circle-nodes", name: "Arquitectura Multi-Agente", desc: "Orquestación de micro-agentes con roles especializados en la empresa." },
-                    { icon: "fa-user-check", name: "Involucración Humana (HITL)", desc: "Pasarelas de aprobación humana integradas para decisiones críticas." },
-                    { icon: "fa-chart-line", name: "Auto-Optimización", desc: "Refinamiento continuo de planes basado en retroalimentación del entorno." },
-                    { icon: "fa-terminal", name: "Sandboxing Seguro", desc: "Aislamiento total del entorno de ejecución de código del agente." }
+                    { icon: "fa-network-wired", name: "Ecosistema Multi-Agente", desc: "Coordinación e intercambio de mensajes cifrados entre entidades con roles especializados." },
+                    { icon: "fa-user-check", name: "Human-in-the-Loop (HITL)", desc: "Puntos de control e inspección manual para autorizaciones y auditorías críticas." },
+                    { icon: "fa-chart-pie", name: "Métricas de Auto-Corrección", desc: "Capacidad de replanificar tareas cuando se intercepta un fallo de entorno." },
+                    { icon: "fa-terminal", name: "Entornos Aislados (Sandbox)", desc: "Ejecución segura de código autogenerado dentro de contenedores efímeros." }
                 ]
             },
             2: {
+                navLabel: "2. Multimodalidad",
                 title: "Capacidades Multimodales y Despliegue con Gemini",
-                leftDesc: "Uso del motor multimodal nativo de la familia Gemini para analizar de manera concurrente información masiva de audio, video y texto.",
+                leftDesc: "Aprovechamiento integral de los motores avanzados de Gemini para digerir y unificar flujos simultáneos de audio, video, imágenes y código fuente.",
                 leftItems: [
-                    { icon: "fa-photo-film", title: "Cross-Modal Directo", detail: "Razonamiento directo sin necesidad de transcribir audio o etiquetar imágenes previamente." },
-                    { icon: "fa-file-lines", title: "Ventana de Contexto Masiva", detail: "Procesamiento de miles de páginas de documentación técnica en un solo paso." },
-                    { icon: "fa-magnifying-glass-chart", title: "RAG Nativo", detail: "Búsqueda y recuperación precisa fundamentada en orígenes de datos locales." }
+                    { icon: "fa-photo-film", title: "Inferencia Transversal", detail: "Procesamiento de datos multimedia nativos sin capas previas de traducción." },
+                    { icon: "fa-database", title: "Ventana de Contexto Ampliada", detail: "Capacidad para contrastar millones de tokens de información técnica estructurada." },
+                    { icon: "fa-magnifying-glass-chart", title: "Generación Aumentada (RAG)", detail: "Indexación semántica e inyección de datos dinámicos en tiempo de ejecución." }
                 ],
-                rightTitle: "Ventajas en Enterprise",
+                rightTitle: "Pilares del Motor Multimodal",
+                rightSubtitle: "Optimización de modelos a gran escala para alta disponibilidad transaccional.",
                 rightCards: [
-                    { icon: "fa-language", name: "Comprensión Global", desc: "Soporte internacional de idiomas y dialectos sin capas de traducción." },
-                    { icon: "fa-gauge-high", name: "Baja Latencia de Inferencia", desc: "Modelos optimizados Flash para flujos agénticos en tiempo real." },
-                    { icon: "fa-lock", name: "Model Armor", desc: "Filtrado automático de inyecciones de prompts y seguridad de contenido." },
-                    { icon: "fa-code", name: "Llamada a Funciones", desc: "Estructuración precisa de parámetros JSON para el consumo de software." }
-                ]
-            },
-            3: {
-                title: "Model Context Protocol (MCP) y Gobernanza de Datos",
-                leftDesc: "Implementación del nuevo estándar abierto para establecer enlaces seguros y unificados entre las interfaces de IA y tus silos de datos.",
-                leftItems: [
-                    { icon: "fa-link", title: "Conector Universal", detail: "Estandardización de datos independientemente de la base de datos origen." },
-                    { icon: "fa-user-shield", title: "Control RBAC Estricto", detail: "Asignación granular de permisos a nivel de filas o conjuntos de datos." },
-                    { icon: "fa-clipboard-list", title: "Auditoría en Tiempo Real", detail: "Trazabilidad completa de las consultas generadas por el agente de IA." }
-                ],
-                rightTitle: "Estrategias de Gobernanza",
-                rightCards: [
-        
+                    { icon: "fa-bolt", name: "Modelos Gemini Flash", desc: "Inferencia ágil de baja latencia adaptada para interacciones agénticas." },
+                    { icon: "fa-shield-cat", name: "Seguridad Model Armor", desc: "Capas nativas integradas para mitigar inyecciones de datos no autorizados." },
+                    { icon: "fa-code", name: "Salidas JSON Estructuradas", desc: "Garantía de respuestas formateadas bajo esquemas estrictos listos para el backend." },
+                    

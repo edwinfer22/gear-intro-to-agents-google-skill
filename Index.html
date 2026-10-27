@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEAR - Infografía Interactiva de Agentes de IA</title>
+    <!-- Tailwind CSS para diseño moderno y estilizado -->
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+
+    <!-- Encabezado Principal -->
+    <header class="border-b border-slate-800 bg-slate-950/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2 rounded-xl shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-robot text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">GEAR - Intro to Agents</h1>
+                    <p class="text-xs text-slate-400">Infografía Interactiva: Agentes de IA & Gemini Enterprise</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 text-slate-300">
+                <i class="fa-solid fa-code-branch text-blue-400"></i> v1.0.0 Stable
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor de la Aplicación -->
+    <main class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Menú de Selección (Navegación de la Infografía) -->
+        <div class="lg:col-span-1 space-y-3">
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider px-2 mb-4">Módulos Tecnológicos</h2>
+            
+            <button onclick="switchTab(1)" id="btn-1" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-blue-600/10 border-blue-500/30 text-blue-400 shadow-md">
+                <div class="p-2 bg-blue-500/20 rounded-lg mt-0.5"><i class="fa-solid fa-brain"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">1. IA Agéntica</h3>
+                    <p class="text-xs text-slate-400 mt-1">Agentes Autónomos y bucles de razonamiento.</p>
+                </div>
+            </button>
+
+            <button onclick="switchTab(2)" id="btn-2" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600">
+                <div class="p-2 bg-slate-700/30 rounded-lg mt-0.5"><i class="fa-solid fa-eye"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">2. Multimodalidad Gemini</h3>
+                    <p class="text-xs text-slate-400 mt-1">Procesamiento unificado de datos multimedia.</p>
+                </div>
+            </button>
+
+            <button onclick="switchTab(3)" id="btn-3" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600">
+                <div class="p-2 bg-slate-700/30 rounded-lg mt-0.5"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">3. MCP & Gobernanza</h3>
+                    <p class="text-xs text-slate-400 mt-1">Model Context Protocol y protección de datos.</p>
+                </div>
+            </button>
+
+            <button onclick="switchTab(4)" id="btn-4" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600">
+                <div class="p-2 bg-slate-700/30 rounded-lg mt-0.5"><i class="fa-solid fa-server"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">4. Cloud Run + GPUs</h3>
+                    <p class="text-xs text-slate-400 mt-1">Cómputo serverless de alto rendimiento.</p>
+                </div>
+            </button>
+
+            <button onclick="switchTab(5)" id="btn-5" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600">
+                <div class="p-2 bg-slate-700/30 rounded-lg mt-0.5"><i class="fa-solid fa-network-wired"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">5. Web AI Eficiente</h3>
+                    <p class="text-xs text-slate-400 mt-1">Inferencia veloz en el lado del cliente.</p>
+                </div>
+            </button>
+
+            <button onclick="switchTab(6)" id="btn-6" class="tab-btn w-full text-left p-4 rounded-xl border transition-all flex items-start gap-4 bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600">
+                <div class="p-2 bg-slate-700/30 rounded-lg mt-0.5"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div>
+                    <h3 class="font-medium text-sm sm:text-base">6. Android & Flutter</h3>
+                    <p class="text-xs text-slate-400 mt-1">Ecosistemas y despliegue multiplataforma.</p>
+                </div>
+            </button>
+        </div>
+
+        <!-- Panel de Detalle Interactivo -->
+        <div class="lg:col-span-2 bg-slate-950/40 border border-slate-800 p-6 sm:p-8 rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[500px]">
+            
+            <!-- Contenido Dinámico de las Pestañas -->
+            <div id="tab-content" class="space-y-6">
+                <!-- Se inyecta dinámicamente mediante JS -->
+            </div>
+
+            <!-- Footer Informativo Interno -->
+            <div class="mt-8 pt-4 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between items-center">
+                <span>Programa GEAR de Google Cloud</span>
+                <span class="text-blue-500/80"><i class="fa-solid fa-circle-check"></i> Listo para Producción</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lógica de Control de la Página Interactiva -->
+    <script>
+        const contentData = {
+            1: {
+                title: "La Era de la IA Agéntica y Agentes Autónomos",
+                subtitle: "Arquitecturas dinámicas con bucles cerrados de decisión",
+                desc: "Los agentes autónomos rompen el paradigma tradicional del software lineal. Utilizando el framework de razonamiento ReAct, estos sistemas formulan hipótesis, validan con sus herramientas integradas y corrigen su rumbo de ejecución de manera totalmente autónoma.",
+                features: ["Planificación en múltiples pasos independientes", "Uso inteligente de herramientas y APIs", "Memoria contextual a corto y largo plazo"],
+                icon: "fa-brain",
+                color: "blue"
+            },
+            2: {
+                title: "Capacidades Multimodales y Despliegue con Gemini",
+                subtitle: "Procesamiento cross-modal nativo a escala empresarial",
+                desc: "La suite avanzada de modelos Gemini Enterprise permite un análisis verdaderamente integral del ecosistema corporativo. Permite evaluar flujos combinados que incluyen streams de video en tiempo real, grabaciones de audio, bases de datos masivas y código fuente.",
+                features: ["Ventana de contexto ultra extendida", "Razonamiento nativo sin traducción intermedia", "Soporte robusto para técnicas RAG estructuradas"],
+                icon: "fa-eye",
+                color: "indigo"
+            },
+            3: {
+                title: "Model Context Protocol (MCP) y Gobernanza de Datos",
+                subtitle: "Conectores universales estandarizados y seguros",
+                desc: "Model Context Protocol (MCP) es el estándar de oro abierto para la vinculación segura de herramientas de IA con almacenes de datos confidenciales. Garantiza un aislamiento absoluto de los entornos de procesamiento y el estricto cumplimiento de normativas globales.",
+                features: ["Protocolo unificado para bases de datos empresariales", "Políticas estrictas de acceso por roles (RBAC)", "Auditoría en tiempo real de operaciones de IA"],
+                icon: "fa-shield-halved",
+                color: "emerald"
+            },
+            4: {
+                title: "Arquitectura en la Nube: Google Cloud Run para GPUs",
+                subtitle: "Infraestructura moderna y elástica sin servidores dedicados",
+                desc: "Optimiza drásticamente los costos de infraestructura computacional utilizando Google Cloud Run configurado con acceso nativo a GPUs de alto rendimiento. Te permite ejecutar microservicios pesados de IA reduciendo a cero el costo por inactividad.",
+                features: ["Escalabilidad horizontal automatizada basada en peticiones", "Soporte optimizado para contenedores CUDA y OpenCL", "Estructura de costos de pago por uso exacto"],
+                icon: "fa-server",
+                color: "amber"
+            },
+            5: {
+                title: "Web AI: Inteligencia Artificial Eficiente en el Navegador",
+                subtitle: "Inferencia ágil descentralizada del lado del usuario",
+                desc: "Aprovecha el potencial gráfico local de las estaciones de trabajo cliente mediante WebGPU. Esta metodología minimiza la carga en los clusters centrales del servidor web y proporciona respuestas instantáneas con latencia cero a la interfaz de usuario.",
+      

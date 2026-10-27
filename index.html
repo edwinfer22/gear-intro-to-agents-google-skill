@@ -5,46 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Agents & Gemini Enterprise - Infografía Interactiva Premium</title>
     <!-- Tailwind CSS -->
-    <script src="https://tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Íconos Premium -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Librerías de conversión a PDF -->
-    <script src="https://cloudflare.com"></script>
-    <script src="https://cloudflare.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         .custom-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        :root {
+            --google-blue: #4285f4;
+            --google-red: #ea4335;
+            --google-yellow: #fbbc05;
+            --google-green: #34a853;
+            --google-ink: #202124;
+            --google-muted: #5f6368;
+            --google-surface: #fff;
+            --google-page: #f8fafd;
+            --google-line: #dadce0;
+        }
+        body[data-theme="light"] { background: var(--google-page) !important; color: var(--google-ink) !important; }
+        body[data-theme="light"] header,
+        body[data-theme="light"] header > div,
+        body[data-theme="light"] header nav { background: rgba(255,255,255,.94) !important; border-color: var(--google-line) !important; }
+        body[data-theme="light"] header { box-shadow: 0 2px 12px rgba(60,64,67,.08) !important; }
+        body[data-theme="light"] header h1,
+        body[data-theme="light"] #infographic-area h2,
+        body[data-theme="light"] #left-list .font-bold,
+        body[data-theme="light"] #right-grid .font-bold { color: var(--google-ink) !important; }
+        body[data-theme="light"] header p,
+        body[data-theme="light"] #infographic-area [class~="text-slate-400"],
+        body[data-theme="light"] #infographic-area [class~="text-slate-500"],
+        body[data-theme="light"] footer { color: var(--google-muted) !important; }
+        body[data-theme="light"] #infographic-area [class~="text-slate-100"],
+        body[data-theme="light"] #infographic-area [class~="text-slate-300"] { color: #3c4043 !important; }
+        body[data-theme="light"] #infographic-area > section { background: rgba(255,255,255,.9) !important; }
+        body[data-theme="light"] #left-list article,
+        body[data-theme="light"] #right-grid article { background: rgba(255,255,255,.94) !important; border-color: var(--google-line) !important; }
+        body[data-theme="light"] #infographic-area > section { box-shadow: 0 4px 20px rgba(60,64,67,.08) !important; }
+        body[data-theme="light"] #infographic-area { background: transparent !important; }
+        body[data-theme="light"] footer { border-color: var(--google-line) !important; }
+        body[data-theme="light"] footer .bg-slate-950,
+        body[data-theme="light"] header .bg-slate-900 { background: #f1f3f4 !important; border-color: var(--google-line) !important; }
+        body[data-theme="light"] #tab-nav-container button:not([aria-selected="true"]) { color: var(--google-muted) !important; }
+        body[data-theme="light"] #tab-nav-container button[aria-selected="true"] { background: var(--google-blue) !important; }
+        body[data-theme="light"] #theme-toggle { background: #fff !important; color: var(--google-ink) !important; border-color: var(--google-line) !important; }
+        body[data-theme="light"] #print-report { background: var(--google-blue) !important; }
+        #infographic-area > section { border-radius: 2rem !important; }
+        #left-list article, #right-grid article { border-radius: 1.5rem !important; transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
+        #left-list article:hover, #right-grid article:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(60,64,67,.12); }
+        .brand-icon { display: inline-flex; flex: 0 0 3rem; width: 3rem; height: 3rem; align-items: center; justify-content: center; border-radius: 1.1rem; background: #f8fafd; font-size: 1.25rem; box-shadow: inset 0 0 0 1px rgba(60,64,67,.08); }
+        .brand-tone-blue { color: var(--google-blue) !important; }
+        .brand-tone-red { color: var(--google-red) !important; }
+        .brand-tone-yellow { color: #d99b00 !important; }
+        .brand-tone-green { color: var(--google-green) !important; }
+        .nav-icon { font-size: .95rem; }
+        .google-corner { position: fixed; z-index: 0; width: clamp(110px, 17vw, 220px); height: clamp(110px, 17vw, 220px); opacity: .45; pointer-events: none; }
+        .google-corner path { fill: none; stroke-width: 8; stroke-linecap: round; }
+        .google-corner-top { top: -50px; left: -50px; }
+        .google-corner-bottom { right: -50px; bottom: -50px; transform: rotate(180deg); }
+        .agent-watermark { position: fixed; z-index: 3; top: 53%; left: 50%; width: clamp(240px, 36vw, 450px); transform: translate(-50%, -50%); opacity: .2; pointer-events: none; }
+        .agent-watermark .agent-shell { fill: url(#agent-shell-gradient); stroke: #9aa0a6; stroke-width: 3; }
+        .agent-watermark .agent-outline { fill: none; stroke: #9aa0a6; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+        .agent-watermark .agent-face { fill: #202124; }
+        .agent-watermark .agent-eye { fill: url(#agent-eye-gradient); filter: url(#agent-eye-glow); }
+        .agent-watermark .agent-eye-glint { fill: #fff; }
+        .agent-watermark .agent-accent-blue { fill: #4285f4; }
+        .agent-watermark .agent-accent-red { fill: #ea4335; }
+        .agent-watermark .agent-accent-yellow { fill: #fbbc05; }
+        .agent-watermark .agent-accent-green { fill: #34a853; }
+        header, main, footer { position: relative; z-index: 2; }
+        body[data-theme="dark"] { background: #0f172a !important; }
+        body[data-theme="dark"] .brand-icon { background: #1e293b; }
+        body[data-theme="dark"] #left-list article, body[data-theme="dark"] #right-grid article { border-color: #334155 !important; }
+        body[data-theme="dark"] .agent-watermark { opacity: .24; }
+        @media (max-width: 767px) {
+            .google-corner { opacity: .28; }
+            .google-corner-top { top: -65px; left: -65px; }
+            .google-corner-bottom { right: -65px; bottom: -65px; }
+            .agent-watermark { width: min(72vw, 300px); opacity: .14; }
+        }
+        @media print {
+            body { background: white !important; color: #0f172a !important; }
+            header button, #tab-nav-container, footer { display: none !important; }
+            .google-corner, .agent-watermark { display: none !important; }
+            #infographic-area { display: block !important; }
+            #infographic-area > section { margin-bottom: 1rem; break-inside: avoid; }
+            #infographic-area section { background: white !important; color: #0f172a !important; border-color: #cbd5e1 !important; box-shadow: none !important; }
+            #infographic-area h2, #infographic-area h3, #infographic-area p, #infographic-area span { color: #0f172a !important; }
+            #infographic-area [data-card-detail],
+            #infographic-area [data-component-detail] { display: block !important; }
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
+<body data-theme="light" class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
+
+    <svg class="google-corner google-corner-top" viewBox="0 0 180 180" aria-hidden="true">
+        <path d="M12 150 A138 138 0 0 1 150 12" stroke="#4285f4"></path>
+        <path d="M34 166 A132 132 0 0 1 166 34" stroke="#ea4335"></path>
+        <path d="M58 178 A120 120 0 0 1 178 58" stroke="#fbbc05"></path>
+        <path d="M82 180 A98 98 0 0 1 180 82" stroke="#34a853"></path>
+    </svg>
+    <svg class="google-corner google-corner-bottom" viewBox="0 0 180 180" aria-hidden="true">
+        <path d="M12 150 A138 138 0 0 1 150 12" stroke="#4285f4"></path>
+        <path d="M34 166 A132 132 0 0 1 166 34" stroke="#ea4335"></path>
+        <path d="M58 178 A120 120 0 0 1 178 58" stroke="#fbbc05"></path>
+        <path d="M82 180 A98 98 0 0 1 180 82" stroke="#34a853"></path>
+    </svg>
+    <svg class="agent-watermark" viewBox="0 0 360 400" aria-hidden="true">
+        <defs>
+            <linearGradient id="agent-shell-gradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#fff"></stop>
+                <stop offset=".55" stop-color="#f1f3f4"></stop>
+                <stop offset="1" stop-color="#bdc1c6"></stop>
+            </linearGradient>
+            <radialGradient id="agent-eye-gradient">
+                <stop offset="0" stop-color="#e8f0fe"></stop>
+                <stop offset=".4" stop-color="#8ab4f8"></stop>
+                <stop offset="1" stop-color="#1a73e8"></stop>
+            </radialGradient>
+            <filter id="agent-eye-glow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="5" result="glow"></feGaussianBlur>
+                <feMerge>
+                    <feMergeNode in="glow"></feMergeNode>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+            </filter>
+        </defs>
+        <path class="agent-outline" d="M180 54V35m-12 0h24"></path>
+        <circle class="agent-accent-green" cx="180" cy="27" r="9"></circle>
+        <path class="agent-shell" d="M180 68c-61 0-111 40-111 91v43c0 60 49 103 111 103s111-43 111-103v-43c0-51-50-91-111-91Z"></path>
+        <path class="agent-face" d="M91 146c0-26 39-46 89-46s89 20 89 46v42c0 35-40 57-89 57s-89-22-89-57z"></path>
+        <ellipse class="agent-eye" cx="139" cy="170" rx="20" ry="25"></ellipse>
+        <ellipse class="agent-eye" cx="221" cy="170" rx="20" ry="25"></ellipse>
+        <ellipse class="agent-eye-glint" cx="133" cy="161" rx="5" ry="7"></ellipse>
+        <ellipse class="agent-eye-glint" cx="215" cy="161" rx="5" ry="7"></ellipse>
+        <path class="agent-outline" d="M149 215c10 6 52 6 62 0"></path>
+        <path class="agent-shell" d="M116 293h128l24 31-29 30H121l-29-30z"></path>
+        <path class="agent-outline" d="m122 354-14 19m130-19 14 19"></path>
+        <circle class="agent-accent-blue" cx="154" cy="321" r="7"></circle>
+        <circle class="agent-accent-red" cx="180" cy="321" r="7"></circle>
+        <circle class="agent-accent-yellow" cx="206" cy="321" r="7"></circle>
+        <path class="agent-outline" d="M91 132 72 117m197 15 19-15"></path>
+    </svg>
 
     <!-- Encabezado de Navegación Futurista -->
     <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800">
-                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span>
-                    <span class="w-3 h-3 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7]"></span>
-                    <span class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
+                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800" aria-label="Colores de Google">
+                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#4285f4]"></span>
+                    <span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_#ea4335]"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_10px_#fbbc05]"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_#34a853]"></span>
                 </div>
                 <div>
                     <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
                         AI Agents & Gemini Enterprise 
-                        <span class="text-[10px] bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
+                        <span class="text-[10px] bg-gradient-to-r from-blue-500 via-red-500 to-green-500 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
                     </h1>
-                    <p class="text-xs text-slate-400 font-medium">Arquitectura avanzada y despliegue automatizado de agentes autónomos</p>
+                    <p class="text-xs text-slate-400 font-medium">Arquitectura, skills y despliegue de agentes autónomos</p>
                 </div>
             </div>
-            
-            <button onclick="downloadPDF()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
-                <i class="fa-solid fa-cloud-arrow-down text-sm"></i> Descargar Reporte PDF
-            </button>
+
+            <div class="flex flex-wrap justify-center gap-3">
+                <button type="button" id="theme-toggle" aria-label="Cambiar tema: día o noche" aria-pressed="false" class="bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-all flex items-center gap-3 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
+                    <i class="fa-solid fa-sun text-amber-400 text-xl drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
+                    <span>Día / Noche</span>
+                    <i class="fa-solid fa-moon text-indigo-300 text-xl drop-shadow-[0_0_8px_rgba(165,180,252,0.6)]" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="print-report" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
+                    <i class="fa-solid fa-file-arrow-down text-lg" aria-hidden="true"></i> Imprimir / Guardar PDF
+                </button>
+            </div>
         </div>
 
         <!-- Barra de pestañas táctiles interactivas -->
         <div class="bg-slate-950 border-t border-slate-800/60 overflow-x-auto scrollbar-none">
-            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container">
+            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container" role="tablist" aria-label="Temas de la infografía">
                 <!-- Se inyecta dinámicamente con estilos responsivos -->
             </nav>
         </div>
@@ -52,7 +189,7 @@
 
     <!-- Lienzo de la Infografía -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        <div id="infographic-area" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-slate-900 p-2 rounded-2xl">
+        <div id="infographic-area" role="tabpanel" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-slate-900 p-2 rounded-2xl">
             
             <!-- Columna Izquierda: Anatomía Dinámica -->
             <section class="lg:col-span-5 bg-gradient-to-b from-slate-950 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
@@ -95,40 +232,286 @@
         </div>
     </footer>
 
-    <!-- Lógica de Control e Interactividad Completa -->
     <script>
-        const modulesData = {
-            1: {
-                navLabel: "1. Era Agéntica",
+        const modulesData = [
+            {
+                navLabel: "Era Agéntica",
                 title: "La Era de la IA Agéntica y Agentes Autónomos",
-                leftDesc: "Representa el salto cualitativo desde los flujos de ejecución rígidos basados en prompts hacia entidades de software capaces de operar mediante razonamiento autónomo.",
+                leftDesc: "El paso de prompts aislados a sistemas que razonan, usan herramientas y revisan sus resultados para completar tareas con objetivos definidos.",
                 leftItems: [
-                    { icon: "fa-brain", title: "Loop del Framework ReAct", detail: "Metodología estructurada de razonamiento y acción recursiva inmediata." },
-                    { icon: "fa-screwdriver-wrench", title: "Tool Calling Nativo", detail: "Habilidad para seleccionar y ejecutar APIs o consultas de bases de datos de forma lógica." },
-                    { icon: "fa-box-archive", title: "Persistencia de Memoria", detail: "Almacenamiento contextual a corto y largo plazo para gestionar flujos complejos." }
+                    { icon: "fa-brain", title: "Loop de razonamiento", detail: "El agente observa el estado, elige una acción, evalúa el resultado y continúa hasta cumplir el objetivo o pedir ayuda." },
+                    { icon: "fa-screwdriver-wrench", title: "Uso de herramientas", detail: "Funciones y APIs con permisos explícitos permiten consultar datos o ejecutar acciones verificables." },
+                    { icon: "fa-box-archive", title: "Memoria contextual", detail: "El estado de la tarea y la información relevante se conservan según políticas de retención definidas." }
                 ],
-                rightTitle: "Arquitectura de Agentes Autónomos",
-                rightSubtitle: "Mapeo tecnológico para habilitar operaciones continuas sin intervención humana directa.",
+                rightTitle: "Arquitectura de agentes autónomos",
+                rightSubtitle: "Componentes para operar con control, trazabilidad y supervisión.",
                 rightCards: [
-                    { icon: "fa-network-wired", name: "Ecosistema Multi-Agente", desc: "Coordinación e intercambio de mensajes cifrados entre entidades con roles especializados." },
-                    { icon: "fa-user-check", name: "Human-in-the-Loop (HITL)", desc: "Puntos de control e inspección manual para autorizaciones y auditorías críticas." },
-                    { icon: "fa-chart-pie", name: "Métricas de Auto-Corrección", desc: "Capacidad de replanificar tareas cuando se intercepta un fallo de entorno." },
-                    { icon: "fa-terminal", name: "Entornos Aislados (Sandbox)", desc: "Ejecución segura de código autogenerado dentro de contenedores efímeros." }
+                    { icon: "fa-network-wired", name: "Orquestación multiagente", desc: "Agentes especializados colaboran mediante responsabilidades y contratos claros.", detail: "Define un agente coordinador, limita las herramientas de cada rol y registra las transferencias entre agentes." },
+                    { icon: "fa-user-check", name: "Supervisión humana", desc: "Las decisiones sensibles se detienen para revisión y autorización.", detail: "Solicita aprobación antes de operaciones irreversibles, cambios de permisos o acciones con impacto externo." },
+                    { icon: "fa-chart-pie", name: "Evaluación continua", desc: "Las métricas ayudan a detectar errores y mejorar los flujos.", detail: "Mide finalización, precisión, latencia y uso de herramientas con conjuntos de evaluación reproducibles." },
+                    { icon: "fa-cube", name: "Ejecución aislada", desc: "Las tareas de riesgo se ejecutan en entornos con límites explícitos.", detail: "Aísla procesos, aplica cuotas de recursos y evita otorgar acceso innecesario a la red o al sistema de archivos." }
                 ]
             },
-            2: {
-                navLabel: "2. Multimodalidad",
-                title: "Capacidades Multimodales y Despliegue con Gemini",
-                leftDesc: "Aprovechamiento integral de los motores avanzados de Gemini para digerir y unificar flujos simultáneos de audio, video, imágenes y código fuente.",
+            {
+                navLabel: "Skills de agentes",
+                title: "Skills: capacidades reutilizables para agentes",
+                leftDesc: "Un skill reúne instrucciones, contexto y pasos de trabajo para que un agente resuelva una tarea especializada de forma consistente. Puede orientar cuándo usar una herramienta, pero no sustituye los permisos ni las validaciones de esa herramienta.",
                 leftItems: [
-                    { icon: "fa-photo-film", title: "Inferencia Transversal", detail: "Procesamiento de datos multimedia nativos sin capas previas de traducción." },
-                    { icon: "fa-database", title: "Ventana de Contexto Ampliada", detail: "Capacidad para contrastar millones de tokens de información técnica estructurada." },
-                    { icon: "fa-magnifying-glass-chart", title: "Generación Aumentada (RAG)", detail: "Indexación semántica e inyección de datos dinámicos en tiempo de ejecución." }
+                    { icon: "fa-lightbulb", title: "Instrucciones especializadas", detail: "Describe el objetivo, los límites y los criterios de calidad de una tarea, por ejemplo revisar un documento o preparar un informe." },
+                    { icon: "fa-list-ol", title: "Flujos paso a paso", detail: "Divide una tarea compleja en pasos claros e incluye decisiones para manejar resultados incompletos o errores." },
+                    { icon: "fa-screwdriver-wrench", title: "Skills y herramientas", detail: "El skill indica cómo abordar el trabajo; una herramienta ejecuta una acción concreta. Define permisos y aprobaciones por separado." },
+                    { icon: "fa-rotate", title: "Mejora continua", detail: "Prueba el skill con casos habituales y excepcionales, recoge resultados y actualiza sus instrucciones cuando sea necesario." }
                 ],
-                rightTitle: "Pilares del Motor Multimodal",
-                rightSubtitle: "Optimización de modelos a gran escala para alta disponibilidad transaccional.",
+                rightTitle: "Diseña skills útiles y fiables",
+                rightSubtitle: "Capacidades enfocadas, reutilizables y fáciles de evaluar.",
                 rightCards: [
-                    { icon: "fa-bolt", name: "Modelos Gemini Flash", desc: "Inferencia ágil de baja latencia adaptada para interacciones agénticas." },
-                    { icon: "fa-shield-cat", name: "Seguridad Model Armor", desc: "Capas nativas integradas para mitigar inyecciones de datos no autorizados." },
-                    { icon: "fa-code", name: "Salidas JSON Estructuradas", desc: "Garantía de respuestas formateadas bajo esquemas estrictos listos para el backend." },
-                    
+                    { icon: "fa-bullseye", name: "Alcance claro", desc: "Define qué resuelve el skill y cuándo debe activarse.", detail: "Incluye ejemplos de solicitudes adecuadas y situaciones en las que el agente debe pedir aclaraciones o derivar la tarea." },
+                    { icon: "fa-book", name: "Contexto y referencias", desc: "Añade solo el conocimiento necesario para completar el trabajo.", detail: "Organiza la información para que sea fácil de consultar y señala qué fuentes deben considerarse prioritarias." },
+                    { icon: "fa-shield-halved", name: "Límites seguros", desc: "Indica qué acciones requieren permisos o confirmación.", detail: "Un skill no concede acceso por sí mismo: las herramientas deben aplicar controles, validación de entradas y aprobación humana cuando corresponda." },
+                    { icon: "fa-vial", name: "Evaluación práctica", desc: "Comprueba la calidad del resultado con escenarios representativos.", detail: "Evalúa exactitud, consistencia y manejo de errores; revisa también que el agente no invoque herramientas innecesarias." }
+                ]
+            },
+            {
+                navLabel: "Multimodalidad",
+                title: "Capacidades Multimodales y Despliegue con Gemini",
+                leftDesc: "Los modelos multimodales pueden interpretar texto, imágenes, audio y video dentro de flujos de trabajo contextualizados.",
+                leftItems: [
+                    { icon: "fa-photo-film", title: "Entradas multimodales", detail: "Combina documentos, imágenes, audio y texto para analizar una misma solicitud." },
+                    { icon: "fa-database", title: "Contexto y grounding", detail: "Proporciona al modelo fuentes pertinentes y actuales para fundamentar sus respuestas." },
+                    { icon: "fa-magnifying-glass-chart", title: "Generación aumentada (RAG)", detail: "Recupera fragmentos autorizados y relevantes antes de generar una respuesta." }
+                ],
+                rightTitle: "Pilares del motor multimodal",
+                rightSubtitle: "Diseño de experiencias multimodales con respuestas útiles y verificables.",
+                rightCards: [
+                    { icon: "fa-bolt", name: "Selección de modelos", desc: "Equilibra calidad, latencia y coste según cada tarea.", detail: "Evalúa modelos con ejemplos representativos y selecciona el más ligero que cumpla los requisitos." },
+                    { icon: "fa-shield-halved", name: "Protección de contenido", desc: "Aplica controles de seguridad a las entradas y salidas.", detail: "Define políticas para datos sensibles, contenido no permitido y revisión de resultados de alto impacto." },
+                    { icon: "fa-code", name: "Salidas estructuradas", desc: "Restringe las respuestas a formatos que el sistema pueda validar.", detail: "Valida el esquema y los campos antes de que otra parte de la aplicación procese el resultado." },
+                    { icon: "fa-book-open", name: "Fuentes verificables", desc: "Conecta las respuestas con documentos y referencias autorizadas.", detail: "Conserva metadatos de origen para que los usuarios puedan comprobar la información recuperada." }
+                ]
+            },
+            {
+                navLabel: "MCP y gobernanza",
+                title: "Model Context Protocol y Gobernanza de Datos",
+                leftDesc: "MCP estandariza cómo los clientes descubren y utilizan herramientas y recursos, mientras la gobernanza establece quién puede acceder a cada dato.",
+                leftItems: [
+                    { icon: "fa-plug", title: "Conectores MCP", detail: "Los servidores exponen herramientas y recursos con contratos legibles por los clientes." },
+                    { icon: "fa-key", title: "Identidad y permisos", detail: "Autentica usuarios y servicios, y aplica el mínimo privilegio en cada conector." },
+                    { icon: "fa-list-check", title: "Auditoría", detail: "Registra acciones, decisiones de autorización y fuentes consultadas para su revisión." }
+                ],
+                rightTitle: "Gobernanza desde el diseño",
+                rightSubtitle: "Controles que protegen los datos sin perder trazabilidad operativa.",
+                rightCards: [
+                    { icon: "fa-user-lock", name: "Acceso de mínimo privilegio", desc: "Cada herramienta recibe solo los permisos imprescindibles.", detail: "Separa credenciales por servicio, limita los ámbitos de acceso y revoca permisos que ya no se necesitan." },
+                    { icon: "fa-filter-circle-dollar", name: "Límites de datos", desc: "Reduce la exposición de información personal o confidencial.", detail: "Filtra, enmascara o excluye datos antes de enviarlos a modelos o herramientas externas." },
+                    { icon: "fa-clipboard-check", name: "Trazabilidad", desc: "Las operaciones importantes dejan evidencia revisable.", detail: "Incluye identificadores de solicitud, usuario, herramienta invocada y resultado de la autorización." },
+                    { icon: "fa-shield", name: "Aislamiento por entorno", desc: "Desarrollo, pruebas y producción mantienen fronteras claras.", detail: "Usa configuraciones, identidades y datos independientes para cada entorno." }
+                ]
+            },
+            {
+                navLabel: "Google Cloud Run",
+                title: "Arquitectura en la Nube: Google Cloud Run",
+                leftDesc: "Cloud Run permite publicar servicios en contenedores con escalado administrado y facturación alineada con el uso.",
+                leftItems: [
+                    { icon: "fa-box", title: "Contenedores reproducibles", detail: "Empaqueta aplicación y dependencias en una imagen versionada y verificable." },
+                    { icon: "fa-arrow-up-wide-short", title: "Escalado administrado", detail: "Configura concurrencia, límites y capacidad mínima según los objetivos del servicio." },
+                    { icon: "fa-gauge-high", title: "Observabilidad", detail: "Correlaciona registros, métricas y trazas para investigar latencia y errores." }
+                ],
+                rightTitle: "Despliegue listo para producción",
+                rightSubtitle: "Buenas prácticas para servicios de IA fiables y controlables.",
+                rightCards: [
+                    { icon: "fa-cloud-arrow-up", name: "Entrega continua", desc: "Publica versiones inmutables y conserva la posibilidad de revertir.", detail: "Automatiza pruebas y despliega gradualmente antes de dirigir todo el tráfico a una versión." },
+                    { icon: "fa-sliders", name: "Recursos y concurrencia", desc: "Ajusta CPU, memoria y solicitudes simultáneas al perfil real de carga.", detail: "Prueba con cargas representativas y configura límites para proteger dependencias y presupuesto." },
+                    { icon: "fa-key", name: "Secretos e identidad", desc: "Evita incluir credenciales en el código o la imagen.", detail: "Usa identidades de servicio y un gestor de secretos con permisos acotados." },
+                    { icon: "fa-chart-line", name: "Coste y rendimiento", desc: "Supervisa el consumo, la latencia y los errores por versión.", detail: "Define alertas y presupuestos; prueba escenarios de carga antes de ampliar capacidad." }
+                ]
+            },
+            {
+                navLabel: "Web AI",
+                title: "Web AI: Inteligencia Artificial en el Navegador",
+                leftDesc: "El procesamiento local acerca funciones de IA al usuario y puede reducir la transferencia de datos, con requisitos de hardware que deben medirse.",
+                leftItems: [
+                    { icon: "fa-microchip", title: "Aceleración local", detail: "WebGPU y otras APIs pueden aprovechar el hardware disponible cuando el navegador las admite." },
+                    { icon: "fa-lock", title: "Privacidad del usuario", detail: "Los datos pueden procesarse en el dispositivo sin salir del navegador, según el diseño." },
+                    { icon: "fa-mobile-screen", title: "Compatibilidad progresiva", detail: "Ofrece una alternativa si el dispositivo no soporta el modelo o la aceleración requerida." }
+                ],
+                rightTitle: "Experiencia de IA en el navegador",
+                rightSubtitle: "Rendimiento, privacidad y compatibilidad en equilibrio.",
+                rightCards: [
+                    { icon: "fa-gauge-high", name: "Carga bajo demanda", desc: "Descarga modelos solo cuando la función se necesita.", detail: "Informa del tamaño de descarga y permite cancelar o reintentar en conexiones limitadas." },
+                    { icon: "fa-memory", name: "Gestión de recursos", desc: "Adapta el tamaño del modelo a la memoria y capacidad del dispositivo.", detail: "Libera recursos al cerrar la experiencia y evita bloquear la interfaz durante la inferencia." },
+                    { icon: "fa-universal-access", name: "Interfaz accesible", desc: "Mantén controles claros y estados de carga comprensibles.", detail: "Anuncia el progreso, conserva navegación por teclado y ofrece mensajes de error accionables." },
+                    { icon: "fa-cloud", name: "Alternativa remota", desc: "Usa una ruta de servidor solo cuando sea apropiado y esté autorizada.", detail: "Explica qué datos se envían y solicita consentimiento cuando el procesamiento deja el dispositivo." }
+                ]
+            },
+            {
+                navLabel: "Android y Flutter",
+                title: "Desarrollo Multiplataforma con Android y Flutter",
+                leftDesc: "Las aplicaciones móviles pueden combinar experiencias nativas, modelos remotos y procesamiento local para responder a las necesidades del usuario.",
+                leftItems: [
+                    { icon: "fa-mobile-screen-button", title: "Experiencia adaptativa", detail: "Diseña para distintos tamaños de pantalla, conectividad y capacidades del dispositivo." },
+                    { icon: "fa-arrows-rotate", title: "Procesamiento híbrido", detail: "Decide qué tareas conviene resolver localmente y cuáles requieren servicios remotos." },
+                    { icon: "fa-battery-half", title: "Eficiencia móvil", detail: "Considera batería, memoria y consumo de red al ejecutar tareas de IA." }
+                ],
+                rightTitle: "Aplicaciones móviles fiables",
+                rightSubtitle: "Patrones para integrar inteligencia sin sacrificar usabilidad ni control.",
+                rightCards: [
+                    { icon: "fa-code-branch", name: "SDKs y arquitectura", desc: "Aísla la integración de IA detrás de servicios de aplicación claros.", detail: "Mantén los detalles del proveedor fuera de la interfaz y facilita sustituir o probar implementaciones." },
+                    { icon: "fa-wifi", name: "Conectividad resiliente", desc: "Trata los fallos de red y la disponibilidad parcial como estados normales.", detail: "Ofrece reintentos controlados, cancelación y mensajes que indiquen si una tarea quedó pendiente." },
+                    { icon: "fa-shield-halved", name: "Datos del dispositivo", desc: "Protege los datos locales y minimiza su transmisión.", detail: "Solicita solo los permisos necesarios y evita guardar contenido sensible sin una razón clara." },
+                    { icon: "fa-vial", name: "Pruebas en dispositivos", desc: "Valida rendimiento y accesibilidad en equipos reales.", detail: "Incluye pruebas con poca memoria, batería limitada, cambios de orientación y conectividad intermitente." }
+                ]
+            }
+        ];
+
+        const nav = document.getElementById("tab-nav-container");
+        const infographicArea = document.getElementById("infographic-area");
+        const leftTitle = document.getElementById("left-title");
+        const leftDesc = document.getElementById("left-desc");
+        const leftList = document.getElementById("left-list");
+        const moduleIndex = document.getElementById("module-index");
+        const rightTitle = document.getElementById("right-title");
+        const rightSubtitle = document.getElementById("right-subtitle");
+        const rightGrid = document.getElementById("right-grid");
+        let activeModule = 0;
+
+        function createIcon(iconName, classes = "") {
+            const icon = document.createElement("i");
+            icon.className = `fa-solid ${iconName} ${classes}`.trim();
+            icon.setAttribute("aria-hidden", "true");
+            return icon;
+        }
+
+        function renderNavigation() {
+            nav.replaceChildren();
+            modulesData.forEach((module, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.role = "tab";
+                button.id = `module-tab-${index}`;
+                button.setAttribute("aria-controls", "infographic-area");
+                button.setAttribute("aria-selected", String(index === activeModule));
+                button.tabIndex = index === activeModule ? 0 : -1;
+                button.className = index === activeModule
+                    ? "flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white shadow-lg shadow-blue-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                    : "flex items-center gap-2 px-4 py-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400";
+                const navIcons = ["fa-wand-magic-sparkles", "fa-graduation-cap", "fa-shapes", "fa-plug", "fa-cloud", "fa-globe", "fa-mobile-screen-button"];
+                button.append(createIcon(navIcons[index], `nav-icon brand-tone-${["blue", "red", "yellow", "green"][index % 4]}`));
+                const label = document.createElement("span");
+                label.textContent = module.navLabel;
+                button.append(label);
+                button.addEventListener("click", () => selectModule(index));
+                button.addEventListener("keydown", handleTabKeydown);
+                nav.append(button);
+            });
+        }
+
+        function renderModule() {
+            const module = modulesData[activeModule];
+            infographicArea.setAttribute("aria-labelledby", `module-tab-${activeModule}`);
+            moduleIndex.textContent = `MÓDULO ${String(activeModule + 1).padStart(2, "0")}`;
+            leftTitle.textContent = module.title;
+            leftDesc.textContent = module.leftDesc;
+            rightTitle.textContent = module.rightTitle;
+            rightSubtitle.textContent = module.rightSubtitle;
+
+            leftList.replaceChildren();
+            module.leftItems.forEach((item, index) => {
+                const wrapper = document.createElement("article");
+                wrapper.className = "rounded-xl border border-slate-800 bg-slate-900/70 overflow-hidden";
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "w-full flex items-center gap-4 p-4 text-left hover:bg-slate-800/70 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-blue-400";
+                button.setAttribute("aria-expanded", "false");
+                button.setAttribute("aria-controls", `component-detail-${index}`);
+                button.append(createIcon(item.icon, `brand-icon brand-tone-${["blue", "red", "yellow", "green"][index % 4]}`));
+                const label = document.createElement("span");
+                label.className = "flex-1 font-bold text-sm text-slate-100";
+                label.textContent = item.title;
+                button.append(label, createIcon("fa-chevron-down", "text-slate-500 text-xs transition-transform"));
+
+                const detail = document.createElement("p");
+                detail.id = `component-detail-${index}`;
+                detail.dataset.componentDetail = "";
+                detail.className = "hidden px-4 pb-4 pl-12 text-sm leading-relaxed text-slate-400";
+                detail.textContent = item.detail;
+                button.addEventListener("click", () => {
+                    const expanded = button.getAttribute("aria-expanded") === "true";
+                    button.setAttribute("aria-expanded", String(!expanded));
+                    detail.classList.toggle("hidden", expanded);
+                    button.lastElementChild.classList.toggle("rotate-180", !expanded);
+                });
+                wrapper.append(button, detail);
+                leftList.append(wrapper);
+            });
+
+            rightGrid.replaceChildren();
+            module.rightCards.forEach((card, index) => {
+                const article = document.createElement("article");
+                article.className = "rounded-2xl border border-slate-800 bg-slate-900/80 hover:border-purple-500/40 transition-colors overflow-hidden";
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "w-full p-5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-purple-400";
+                button.setAttribute("aria-expanded", "false");
+                button.setAttribute("aria-controls", `card-detail-${index}`);
+                const heading = document.createElement("span");
+                heading.className = "flex items-center justify-between gap-3";
+                const title = document.createElement("span");
+                title.className = "flex items-center gap-3 font-bold text-sm text-white";
+                title.append(createIcon(card.icon, `brand-icon brand-tone-${["blue", "red", "yellow", "green"][index % 4]}`));
+                const name = document.createElement("span");
+                name.textContent = card.name;
+                title.append(name);
+                heading.append(title, createIcon("fa-plus", "text-slate-500 text-xs"));
+                const description = document.createElement("span");
+                description.className = "mt-3 block text-sm leading-relaxed text-slate-400";
+                description.textContent = card.desc;
+                button.append(heading, description);
+
+                const detail = document.createElement("p");
+                detail.id = `card-detail-${index}`;
+                detail.dataset.cardDetail = "";
+                detail.className = "hidden border-t border-slate-800 px-5 py-4 text-sm leading-relaxed text-slate-300";
+                detail.textContent = card.detail;
+                button.addEventListener("click", () => {
+                    const expanded = button.getAttribute("aria-expanded") === "true";
+                    button.setAttribute("aria-expanded", String(!expanded));
+                    detail.classList.toggle("hidden", expanded);
+                    button.querySelector(".fa-plus").classList.toggle("rotate-45", !expanded);
+                });
+                article.append(button, detail);
+                rightGrid.append(article);
+            });
+            renderNavigation();
+        }
+
+        function selectModule(index) {
+            if (!Number.isInteger(index) || index < 0 || index >= modulesData.length) return;
+            activeModule = index;
+            renderModule();
+        }
+
+        function handleTabKeydown(event) {
+            let nextIndex = activeModule;
+            if (event.key === "ArrowRight") nextIndex = (activeModule + 1) % modulesData.length;
+            else if (event.key === "ArrowLeft") nextIndex = (activeModule - 1 + modulesData.length) % modulesData.length;
+            else if (event.key === "Home") nextIndex = 0;
+            else if (event.key === "End") nextIndex = modulesData.length - 1;
+            else return;
+
+            event.preventDefault();
+            selectModule(nextIndex);
+            document.getElementById(`module-tab-${nextIndex}`).focus();
+        }
+
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            const isLightTheme = document.body.dataset.theme !== "light";
+            document.body.dataset.theme = isLightTheme ? "light" : "dark";
+            themeToggle.setAttribute("aria-pressed", String(isLightTheme));
+            themeToggle.setAttribute("aria-label", `Cambiar al modo ${isLightTheme ? "noche" : "día"}`);
+        });
+        document.getElementById("print-report").addEventListener("click", () => window.print());
+        renderModule();
+    </script>
+</body>
+</html>

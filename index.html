@@ -63,6 +63,38 @@
         body[data-theme="light"] .section-shortcut:hover, body[data-theme="light"] .section-shortcut.is-selected { border-color: rgba(66,133,244,.42); background: rgba(66,133,244,.08); color: #3c4043; }
         body[data-theme="light"] .section-shortcut.is-selected i { color: #4285f4; }
         #learning-roadmap, #reasoning-engine, #learning-overview, #launch-checklist, #prompts-section, #code-section, #vocabulary-section, #quiz-section, #infographic-area { scroll-margin-top: 1.5rem; }
+        #roadmap-flashcards { scroll-margin-top: 1.5rem; }
+        .roadmap-flashcards { max-width: 80rem; margin: 1.5rem auto 0; padding: 0 1rem; }
+        .roadmap-flashcard { min-width: 0; min-height: 12rem; perspective: 1000px; }
+        .roadmap-flashcard.is-current .flashcard-face { border-color: rgba(138,180,248,.55); box-shadow: 0 0 0 3px rgba(66,133,244,.08); }
+        .roadmap-flashcard:hover .flashcard-face { border-color: rgba(138,180,248,.5); }
+        .flashcard-inner { display: grid; min-height: 12rem; transform-style: preserve-3d; transition: transform .65s cubic-bezier(.2,.75,.25,1); }
+        .flashcard-inner.is-flipped { transform: rotateY(180deg); }
+        .flashcard-face { grid-area: 1 / 1; min-height: 12rem; border: 1px solid rgba(148,163,184,.2); border-radius: 1.2rem; background: linear-gradient(145deg, rgba(30,41,59,.82), rgba(15,23,42,.9)); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .flashcard-back { transform: rotateY(180deg); }
+        .flashcard-front { display: flex; }
+        .flashcard-button { display: block; width: 100%; padding: 0; text-align: left; }
+        .flashcard-front { display: flex; align-items: flex-start; gap: .85rem; padding: 1rem; }
+        .flashcard-back { display: flex; flex-direction: column; align-items: stretch; padding: 1rem; }
+        .flashcard-back-heading { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+        .flashcard-back-definition { margin-top: .9rem; color: #cbd5e1; font-size: .78rem; line-height: 1.6; }
+        .flashcard-back-example { display: block; margin-top: auto; padding-top: .7rem; border-left: 2px solid var(--google-green); padding-left: .65rem; color: #a7f3d0; font-size: .75rem; line-height: 1.5; }
+        .flashcard-button:focus-visible { outline: 3px solid rgba(138,180,248,.75); outline-offset: -3px; border-radius: 1.2rem; }
+        .flashcard-icon { display: inline-flex; width: 2.6rem; height: 2.6rem; flex: 0 0 2.6rem; align-items: center; justify-content: center; border-radius: .9rem; background: rgba(66,133,244,.13); color: #8ab4f8; font-size: 1rem; }
+        .flashcard-term { color: #f1f5f9; font-size: .9rem; font-weight: 850; }
+        .flashcard-hint { display: block; margin-top: .35rem; color: #94a3b8; font-size: .72rem; line-height: 1.45; }
+        .flashcard-back-term { color: #f1f5f9; font-size: .85rem; font-weight: 850; }
+        .flashcard-turn-hint { color: #94a3b8; font-size: .68rem; }
+        body[data-theme="light"] .flashcard-face { background: linear-gradient(145deg, #fff, #f8fafd); border-color: var(--google-line); }
+        body[data-theme="light"] .flashcard-term { color: #202124; }
+        body[data-theme="light"] .flashcard-hint { color: #5f6368; }
+        body[data-theme="light"] .flashcard-back-term { color: #202124; }
+        body[data-theme="light"] .flashcard-back-definition { color: #3c4043; }
+        body[data-theme="light"] .flashcard-back-example { color: #188038; }
+        body[data-theme="light"] .flashcard-turn-hint { color: #5f6368; }
+        @media (prefers-reduced-motion: reduce) {
+            .flashcard-inner { transition-duration: .01ms; }
+        }
         .roadmap-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
         .roadmap-track { display: flex; overflow-x: auto; padding: .75rem .25rem 1.4rem; scrollbar-width: thin; scrollbar-color: #475569 transparent; }
         .roadmap-step { --step-color: var(--google-blue); position: relative; display: flex; flex: 1 0 150px; flex-direction: column; align-items: center; gap: .6rem; min-width: 0; padding: 0 .45rem; border: 0; background: transparent; color: #94a3b8; text-align: center; cursor: pointer; }
@@ -111,14 +143,17 @@
         .brand-tone-yellow { color: #d99b00 !important; }
         .brand-tone-green { color: var(--google-green) !important; }
         .nav-icon { font-size: .95rem; }
-        .matatena { position: fixed; z-index: 0; width: clamp(52px, 7vw, 88px); height: clamp(52px, 7vw, 88px); opacity: .09; pointer-events: none; filter: drop-shadow(0 5px 5px rgba(0,0,0,.16)); }
-        .matatena-top-left { top: .75rem; left: .75rem; transform: rotate(-12deg); }
-        .matatena-top-right { top: 5.5rem; right: 1rem; transform: rotate(72deg); }
-        .matatena-bottom-left { bottom: 1rem; left: 1.25rem; transform: rotate(168deg); }
-        .matatena-bottom-right { right: .75rem; bottom: 1rem; transform: rotate(252deg); }
+        .corner-arc { position: fixed; z-index: 0; width: clamp(150px, 21vw, 230px); height: clamp(150px, 21vw, 230px); opacity: .13; pointer-events: none; }
+        .corner-arc-top-left { top: 0; left: 0; }
+        .corner-arc-bottom-right { right: 0; bottom: 0; transform: rotate(180deg); }
+        body[data-theme="dark"] .corner-arc { opacity: .16; }
+        .matatena { position: fixed; z-index: 1; width: clamp(42px, 5vw, 66px); height: clamp(42px, 5vw, 66px); opacity: .07; pointer-events: none; filter: drop-shadow(0 3px 4px rgba(0,0,0,.2)); }
+        .matatena-top-left { top: 19vh; left: 1.5rem; transform: rotate(-12deg); }
+        .matatena-top-right { top: 38vh; right: 1.5rem; transform: rotate(72deg); }
+        .matatena-bottom-left { bottom: 18vh; left: 1.5rem; transform: rotate(168deg); }
+        .matatena-bottom-right { right: 1.5rem; bottom: 22vh; transform: rotate(252deg); }
         .matatena-definitions { position: absolute; width: 0; height: 0; overflow: hidden; }
-        .matatena use { filter: url(#matatena-shadow); }
-        body[data-theme="dark"] .matatena { opacity: .12; }
+        body[data-theme="dark"] .matatena { opacity: .09; }
         .agent-watermark { position: absolute; z-index: 1; right: 1rem; bottom: -3.5rem; width: clamp(150px, 20vw, 245px); opacity: .18; pointer-events: none; }
         .agent-watermark .agent-shell { fill: url(#agent-shell-gradient); stroke: #9aa0a6; stroke-width: 3; }
         .agent-watermark .agent-outline { fill: none; stroke: #9aa0a6; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
@@ -251,11 +286,12 @@
         body[data-theme="dark"] #left-list article, body[data-theme="dark"] #right-grid article { border-color: #334155 !important; }
         body[data-theme="dark"] .agent-watermark { opacity: .24; }
         @media (max-width: 767px) {
-            .matatena { width: 52px; height: 52px; opacity: .08; }
-            .matatena-top-left { top: .25rem; left: .25rem; }
-            .matatena-top-right { top: 6rem; right: .25rem; }
-            .matatena-bottom-left { bottom: .25rem; left: .25rem; }
-            .matatena-bottom-right { bottom: .25rem; right: .25rem; }
+            .corner-arc { width: 135px; height: 135px; opacity: .1; }
+            .matatena { width: 40px; height: 40px; opacity: .055; }
+            .matatena-top-left { top: 18vh; left: .25rem; }
+            .matatena-top-right { top: 38vh; right: .25rem; }
+            .matatena-bottom-left { bottom: 18vh; left: .25rem; }
+            .matatena-bottom-right { bottom: 21vh; right: .25rem; }
             .agent-watermark { right: -1.5rem; bottom: -2.5rem; width: min(48vw, 190px); opacity: .13; }
             .agent-hero-content { max-width: 100%; }
             .agent-flow-step { padding: .65rem .75rem; }
@@ -285,7 +321,7 @@
         @media print {
             * { box-shadow: none !important; text-shadow: none !important; }
             body { background: #fff !important; color: #202124 !important; font-size: 9pt !important; print-color-adjust: economy; -webkit-print-color-adjust: economy; }
-            header button, #tab-nav-container, footer, .matatena, .agent-watermark, .agent-skills-badge, .agent-flow-arrow, .roadmap-progress { display: none !important; }
+            header button, #tab-nav-container, footer, .corner-arc, .matatena, .agent-watermark, .agent-skills-badge, .agent-flow-arrow, .roadmap-progress { display: none !important; }
             header { position: static !important; background: #fff !important; border: 0 !important; }
             .site-header-layout { min-height: 0 !important; padding: 0 0 6mm !important; }
             .site-title { color: #202124 !important; font-size: 16pt !important; }
@@ -321,7 +357,6 @@
             <radialGradient id="tip-red" cx=".3" cy=".25"><stop stop-color="#fce8e6"></stop><stop offset=".5" stop-color="#ea4335"></stop><stop offset="1" stop-color="#a50e0e"></stop></radialGradient>
             <radialGradient id="tip-yellow" cx=".3" cy=".25"><stop stop-color="#fef7e0"></stop><stop offset=".5" stop-color="#fbbc05"></stop><stop offset="1" stop-color="#c58b00"></stop></radialGradient>
             <radialGradient id="tip-green" cx=".3" cy=".25"><stop stop-color="#e6f4ea"></stop><stop offset=".5" stop-color="#34a853"></stop><stop offset="1" stop-color="#137333"></stop></radialGradient>
-            <filter id="matatena-shadow" x="-35%" y="-35%" width="170%" height="180%"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity=".6"></feDropShadow></filter>
             <symbol id="matatena-shape" viewBox="0 0 120 120">
                 <g fill="none" stroke="#101827" stroke-width="13" stroke-linecap="round" opacity=".8">
                     <path d="M60 60 60 13M60 60 100 30M60 60 107 78M60 60 72 108M60 60 22 92M60 60 14 45"></path>
@@ -353,6 +388,33 @@
     <svg class="matatena matatena-top-right" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
     <svg class="matatena matatena-bottom-left" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
     <svg class="matatena matatena-bottom-right" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
+
+    <svg class="corner-arc corner-arc-top-left" viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+            <linearGradient id="corner-arc-gradient" x1="0" y1="1" x2="1" y2="0">
+                <stop stop-color="#4285f4"></stop>
+                <stop offset=".34" stop-color="#34a853"></stop>
+                <stop offset=".67" stop-color="#fbbc05"></stop>
+                <stop offset="1" stop-color="#ea4335"></stop>
+            </linearGradient>
+        </defs>
+        <path d="M0 226 A226 226 0 0 1 226 0" fill="none" stroke="url(#corner-arc-gradient)" stroke-width="16"></path>
+        <path d="M0 184 A184 184 0 0 1 184 0" fill="none" stroke="url(#corner-arc-gradient)" stroke-width="10" opacity=".72"></path>
+        <path d="M0 144 A144 144 0 0 1 144 0" fill="none" stroke="url(#corner-arc-gradient)" stroke-width="6" opacity=".48"></path>
+    </svg>
+    <svg class="corner-arc corner-arc-bottom-right" viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+            <linearGradient id="corner-arc-gradient-bottom" x1="0" y1="1" x2="1" y2="0">
+                <stop stop-color="#4285f4"></stop>
+                <stop offset=".34" stop-color="#34a853"></stop>
+                <stop offset=".67" stop-color="#fbbc05"></stop>
+                <stop offset="1" stop-color="#ea4335"></stop>
+            </linearGradient>
+        </defs>
+        <path d="M0 226 A226 226 0 0 1 226 0" fill="none" stroke="url(#corner-arc-gradient-bottom)" stroke-width="16"></path>
+        <path d="M0 184 A184 184 0 0 1 184 0" fill="none" stroke="url(#corner-arc-gradient-bottom)" stroke-width="10" opacity=".72"></path>
+        <path d="M0 144 A144 144 0 0 1 144 0" fill="none" stroke="url(#corner-arc-gradient-bottom)" stroke-width="6" opacity=".48"></path>
+    </svg>
     <!-- Encabezado de Navegación Futurista -->
     <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
         <div class="site-header-layout max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center gap-4">
@@ -383,6 +445,23 @@
         </div>
 
     </header>
+
+    <nav class="section-shortcuts" aria-label="Accesos rápidos por sección">
+        <p class="mb-2 text-xs font-bold uppercase tracking-[.16em] text-slate-400">Ir a una sección</p>
+        <div class="flex flex-wrap gap-2" id="section-shortcuts">
+            <button type="button" class="section-shortcut" data-target="learning-roadmap" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Ruta</button>
+            <button type="button" class="section-shortcut" data-target="roadmap-flashcards" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Fichas</button>
+            <button type="button" class="section-shortcut" data-target="reasoning-engine" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Razonamiento</button>
+            <button type="button" class="section-shortcut" data-target="learning-overview" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Fundamentos</button>
+            <button type="button" class="section-shortcut" data-target="launch-checklist" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Producción</button>
+            <button type="button" class="section-shortcut" data-target="prompts-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Prompts</button>
+            <button type="button" class="section-shortcut" data-target="code-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Código</button>
+            <button type="button" class="section-shortcut" data-target="vocabulary-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Vocabulario</button>
+            <button type="button" class="section-shortcut" data-target="quiz-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Reto</button>
+            <button type="button" class="section-shortcut" data-target="infographic-area" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Arquitectura</button>
+        </div>
+        <p id="section-shortcut-status" class="mt-2 text-xs text-slate-500" aria-live="polite"></p>
+    </nav>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8" aria-labelledby="agent-hero-title">
         <div class="agent-hero px-6 py-8 sm:px-10 sm:py-10">
@@ -457,7 +536,17 @@
             </div>
         </section>
 
-        <section id="learning-roadmap" class="learning-roadmap" aria-labelledby="roadmap-title">
+        <section id="roadmap-flashcards" class="roadmap-flashcards" aria-labelledby="flashcards-title">
+            <div class="mb-4">
+                <p class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400">Aprende explorando</p>
+                <h2 id="flashcards-title" class="mt-1 text-xl font-black text-white">Fichas del roadmap</h2>
+                <p class="mt-1 text-sm text-slate-400">Abre una ficha para ver la definición y una idea práctica. La etapa actual se resalta.</p>
+            </div>
+            <div id="roadmap-flashcard-grid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></div>
+            <p id="flashcard-status" class="mt-2 text-xs text-slate-500" aria-live="polite"></p>
+        </section>
+
+            <section id="learning-roadmap" class="learning-roadmap" aria-labelledby="roadmap-title">
             <div class="roadmap-heading">
                 <div>
                     <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Tu recorrido</p>
@@ -468,22 +557,6 @@
             </div>
             <nav class="roadmap-track" id="tab-nav-container" role="tablist" aria-label="Etapas de la ruta de aprendizaje"></nav>
         </section>
-
-        <nav class="section-shortcuts" aria-label="Accesos rápidos por sección">
-            <p class="mb-2 text-xs font-bold uppercase tracking-[.16em] text-slate-400">Ir a una sección</p>
-            <div class="flex flex-wrap gap-2" id="section-shortcuts">
-                <button type="button" class="section-shortcut" data-target="learning-roadmap" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Ruta</button>
-                <button type="button" class="section-shortcut" data-target="reasoning-engine" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Razonamiento</button>
-                <button type="button" class="section-shortcut" data-target="learning-overview" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Fundamentos</button>
-                <button type="button" class="section-shortcut" data-target="launch-checklist" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Producción</button>
-                <button type="button" class="section-shortcut" data-target="prompts-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Prompts</button>
-                <button type="button" class="section-shortcut" data-target="code-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Código</button>
-                <button type="button" class="section-shortcut" data-target="vocabulary-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Vocabulario</button>
-                <button type="button" class="section-shortcut" data-target="quiz-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Reto</button>
-                <button type="button" class="section-shortcut" data-target="infographic-area" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Arquitectura</button>
-            </div>
-            <p id="section-shortcut-status" class="mt-2 text-xs text-slate-500" aria-live="polite"></p>
-        </nav>
 
         <section id="reasoning-engine" class="reasoning-engine max-w-7xl mx-auto mt-6" aria-labelledby="reasoning-title" aria-live="polite">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -824,6 +897,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
         const modulesData = [
             {
                 navLabel: "Era Agéntica",
+                learningCard: {
+                    term: "Agente de IA",
+                    icon: "fa-brain",
+                    definition: "Sistema que recibe un objetivo, usa un modelo para decidir los siguientes pasos y puede consultar herramientas dentro de límites definidos.",
+                    example: "Ejemplo: organiza una búsqueda, consulta fuentes autorizadas y entrega un resumen con referencias."
+                },
                 title: "La Era de la IA Agéntica y Agentes Autónomos",
                 leftDesc: "El paso de prompts aislados a sistemas que razonan, usan herramientas y revisan sus resultados para completar tareas con objetivos definidos.",
                 leftItems: [
@@ -851,6 +930,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "Skills de agentes",
+                learningCard: {
+                    term: "Skill",
+                    icon: "fa-wand-magic-sparkles",
+                    definition: "Conjunto reutilizable de instrucciones, conocimiento y pasos que guía al agente al realizar una tarea especializada.",
+                    example: "Ejemplo: una skill de informes indica qué datos reunir, cómo organizarlos y cómo revisar el resultado."
+                },
                 title: "Skills: capacidades reutilizables para agentes",
                 leftDesc: "Un skill reúne instrucciones, contexto y pasos de trabajo para que un agente resuelva una tarea especializada de forma consistente. Puede orientar cuándo usar una herramienta, pero no sustituye los permisos ni las validaciones de esa herramienta.",
                 leftItems: [
@@ -879,6 +964,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "Multimodalidad",
+                learningCard: {
+                    term: "IA multimodal",
+                    icon: "fa-photo-film",
+                    definition: "Capacidad de trabajar con distintos tipos de entrada o salida —como texto, imágenes, audio o video— dentro de una misma tarea.",
+                    example: "Ejemplo: describir una imagen usando también el contexto de un documento."
+                },
                 title: "Capacidades Multimodales y Despliegue con Gemini",
                 leftDesc: "Los modelos multimodales pueden interpretar texto, imágenes, audio y video dentro de flujos de trabajo contextualizados.",
                 leftItems: [
@@ -906,6 +997,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "MCP y gobernanza",
+                learningCard: {
+                    term: "MCP y gobernanza",
+                    icon: "fa-plug",
+                    definition: "MCP define una forma común de conectar clientes con herramientas y recursos; la gobernanza establece quién puede acceder y qué acciones se permiten.",
+                    example: "Idea clave: descubrir una herramienta no significa tener permiso para ejecutarla."
+                },
                 title: "Model Context Protocol y Gobernanza de Datos",
                 leftDesc: "MCP estandariza cómo los clientes descubren y utilizan herramientas y recursos, mientras la gobernanza establece quién puede acceder a cada dato.",
                 leftItems: [
@@ -933,6 +1030,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "Google Cloud Run",
+                learningCard: {
+                    term: "Despliegue en Cloud Run",
+                    icon: "fa-cloud-arrow-up",
+                    definition: "Publicar un servicio empaquetado como contenedor en una plataforma administrada, con configuración de recursos, identidad y escalado.",
+                    example: "Antes de exponerlo: validar la versión, proteger secretos y vigilar errores, latencia y coste."
+                },
                 title: "Arquitectura en la Nube: Google Cloud Run",
                 leftDesc: "Cloud Run permite publicar servicios en contenedores con escalado administrado y facturación alineada con el uso.",
                 leftItems: [
@@ -960,6 +1063,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "Web AI",
+                learningCard: {
+                    term: "Web AI",
+                    icon: "fa-globe",
+                    definition: "Funciones de IA disponibles desde el navegador, que pueden ejecutarse en el dispositivo o apoyarse en un servicio remoto.",
+                    example: "Decisión de diseño: elegir el modo según compatibilidad, privacidad y capacidad del dispositivo."
+                },
                 title: "Web AI: Inteligencia Artificial en el Navegador",
                 leftDesc: "El procesamiento local acerca funciones de IA al usuario y puede reducir la transferencia de datos, con requisitos de hardware que deben medirse.",
                 leftItems: [
@@ -987,6 +1096,12 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             },
             {
                 navLabel: "Android y Flutter",
+                learningCard: {
+                    term: "IA móvil híbrida",
+                    icon: "fa-mobile-screen-button",
+                    definition: "Enfoque que combina procesamiento local y remoto en una app móvil según conectividad, rendimiento, privacidad y recursos.",
+                    example: "Ejemplo: conservar una tarea pendiente sin conexión y reintentarla de forma controlada."
+                },
                 title: "Desarrollo Multiplataforma con Android y Flutter",
                 leftDesc: "Las aplicaciones móviles pueden combinar experiencias nativas, modelos remotos y procesamiento local para responder a las necesidades del usuario.",
                 leftItems: [
@@ -1026,11 +1141,14 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
         const reasoningTitle = document.getElementById("reasoning-title");
         const reasoningScenario = document.getElementById("reasoning-scenario");
         const reasoningSteps = document.getElementById("reasoning-steps");
+        const flashcardGrid = document.getElementById("roadmap-flashcard-grid");
+        const flashcardStatus = document.getElementById("flashcard-status");
         const roadmapProgress = document.getElementById("roadmap-progress");
         let activeModule = 0;
         let transitioningModule = null;
         let roadmapFlashTimeout;
         const visitedModules = new Set([0]);
+        const expandedFlashcards = new Set();
         const roadmapIcons = [
             "fa-brain",
             "fa-wand-magic-sparkles",
@@ -1046,6 +1164,77 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             icon.className = `fa-solid ${iconName} ${classes}`.trim();
             icon.setAttribute("aria-hidden", "true");
             return icon;
+        }
+
+        function renderFlashcards() {
+            flashcardGrid.replaceChildren();
+            modulesData.forEach((module, index) => {
+                const card = document.createElement("article");
+                card.className = `roadmap-flashcard${index === activeModule ? " is-current" : ""}`;
+                const trigger = document.createElement("button");
+                trigger.type = "button";
+                trigger.className = "flashcard-button";
+                trigger.id = `flashcard-trigger-${index}`;
+                trigger.setAttribute("aria-expanded", String(expandedFlashcards.has(index)));
+                trigger.setAttribute("aria-controls", `flashcard-back-${index}`);
+                trigger.setAttribute("aria-label", `${expandedFlashcards.has(index) ? "Volver al frente" : "Mostrar definición de"} ${module.learningCard.term}, ficha ${index + 1} de ${modulesData.length}${index === activeModule ? ", etapa actual" : ""}`);
+                const inner = document.createElement("span");
+                inner.className = `flashcard-inner${expandedFlashcards.has(index) ? " is-flipped" : ""}`;
+
+                const front = document.createElement("span");
+                front.className = "flashcard-face flashcard-front";
+                front.setAttribute("aria-hidden", String(expandedFlashcards.has(index)));
+                const icon = document.createElement("span");
+                icon.className = "flashcard-icon";
+                icon.append(createIcon(module.learningCard.icon));
+                const copy = document.createElement("span");
+                copy.className = "min-w-0 flex-1";
+                const term = document.createElement("span");
+                term.className = "flashcard-term block";
+                term.textContent = module.learningCard.term;
+                const hint = document.createElement("span");
+                hint.className = "flashcard-hint";
+                hint.textContent = index === activeModule ? "Etapa actual · pulsa para voltear" : `Etapa ${index + 1} · pulsa para voltear`;
+                copy.append(term, hint);
+                const frontCue = createIcon("fa-rotate", "mt-1 text-xs text-slate-400");
+                front.append(icon, copy, frontCue);
+
+                const back = document.createElement("span");
+                back.className = "flashcard-face flashcard-back";
+                back.id = `flashcard-back-${index}`;
+                back.setAttribute("aria-hidden", String(!expandedFlashcards.has(index)));
+                const backHeading = document.createElement("span");
+                backHeading.className = "flashcard-back-heading";
+                const backTerm = document.createElement("span");
+                backTerm.className = "flashcard-back-term";
+                backTerm.textContent = module.learningCard.term;
+                const backCue = createIcon("fa-rotate", "text-xs text-blue-300");
+                backHeading.append(backTerm, backCue);
+                const definition = document.createElement("span");
+                definition.className = "flashcard-back-definition";
+                definition.textContent = module.learningCard.definition;
+                const example = document.createElement("span");
+                example.className = "flashcard-back-example";
+                example.textContent = module.learningCard.example;
+                back.append(backHeading, definition, example);
+                inner.append(front, back);
+                trigger.append(inner);
+                trigger.addEventListener("click", () => {
+                    const isExpanded = expandedFlashcards.has(index);
+                    if (isExpanded) expandedFlashcards.delete(index);
+                    else expandedFlashcards.add(index);
+                    trigger.setAttribute("aria-expanded", String(!isExpanded));
+                    trigger.setAttribute("aria-label", `${isExpanded ? "Mostrar definición de" : "Volver al frente de"} ${module.learningCard.term}, ficha ${index + 1} de ${modulesData.length}${index === activeModule ? ", etapa actual" : ""}`);
+                    inner.classList.toggle("is-flipped", !isExpanded);
+                    front.setAttribute("aria-hidden", String(!isExpanded));
+                    back.setAttribute("aria-hidden", String(isExpanded));
+                    flashcardStatus.textContent = isExpanded
+                        ? `Ficha por delante: ${module.learningCard.term}.`
+                        : `Ficha volteada: ${module.learningCard.term}.`;
+                });
+                card.append(trigger);
+                flashcardGrid.append(card);
+            });
         }
 
         function renderNavigation() {
@@ -1179,6 +1368,7 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
                 article.append(button, detail);
                 rightGrid.append(article);
             });
+            renderFlashcards();
             renderNavigation();
         }
 

@@ -47,10 +47,22 @@
         body[data-theme="light"] footer .bg-slate-950,
         body[data-theme="light"] header .bg-slate-900 { background: #f1f3f4 !important; border-color: var(--google-line) !important; }
         body[data-theme="light"] #tab-nav-container button:not([aria-selected="true"]) { color: var(--google-muted) !important; }
-        body[data-theme="light"] #tab-nav-container button[aria-selected="true"] { background: var(--google-blue) !important; }
+        body[data-theme="light"] #tab-nav-container .roadmap-step { background: transparent !important; }
         body[data-theme="light"] #theme-toggle { background: #fff !important; color: var(--google-ink) !important; border-color: var(--google-line) !important; }
         body[data-theme="light"] #print-report { background: #fff !important; color: var(--google-blue) !important; border-color: var(--google-line) !important; }
         .learning-roadmap { max-width: 80rem; margin: 0 auto; padding: 2rem 1rem 0; }
+        .section-shortcuts { max-width: 80rem; margin: 1.5rem auto 0; padding: 0 1rem; }
+        .section-shortcut { display: inline-flex; align-items: center; gap: .55rem; border: 1px solid rgba(148,163,184,.28); border-radius: 9999px; background: rgba(15,23,42,.7); padding: .55rem .85rem; color: #cbd5e1; font-size: .8rem; font-weight: 700; transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease; }
+        .section-shortcut i { color: #94a3b8; }
+        .section-shortcut:hover { border-color: rgba(138,180,248,.65); background: rgba(66,133,244,.1); color: #fff; }
+        .section-shortcut.is-selected { border-color: rgba(138,180,248,.65); background: rgba(66,133,244,.13); color: #dbeafe; box-shadow: 0 0 0 3px rgba(66,133,244,.08); }
+        .section-shortcut.is-selected i { color: #8ab4f8; }
+        .section-shortcut:focus-visible { outline: 3px solid rgba(138,180,248,.75); outline-offset: 3px; }
+        body[data-theme="light"] .section-shortcut { border-color: var(--google-line); background: rgba(255,255,255,.82); color: #5f6368; }
+        body[data-theme="light"] .section-shortcut i { color: #80868b; }
+        body[data-theme="light"] .section-shortcut:hover, body[data-theme="light"] .section-shortcut.is-selected { border-color: rgba(66,133,244,.42); background: rgba(66,133,244,.08); color: #3c4043; }
+        body[data-theme="light"] .section-shortcut.is-selected i { color: #4285f4; }
+        #learning-roadmap, #reasoning-engine, #learning-overview, #launch-checklist, #prompts-section, #code-section, #vocabulary-section, #quiz-section, #infographic-area { scroll-margin-top: 1.5rem; }
         .roadmap-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
         .roadmap-track { display: flex; overflow-x: auto; padding: .75rem .25rem 1.4rem; scrollbar-width: thin; scrollbar-color: #475569 transparent; }
         .roadmap-step { --step-color: var(--google-blue); position: relative; display: flex; flex: 1 0 150px; flex-direction: column; align-items: center; gap: .6rem; min-width: 0; padding: 0 .45rem; border: 0; background: transparent; color: #94a3b8; text-align: center; cursor: pointer; }
@@ -86,8 +98,8 @@
         body[data-theme="light"] .roadmap-step.is-active .roadmap-node { background: linear-gradient(145deg, color-mix(in srgb, var(--step-color) 70%, white), var(--step-color) 55%, color-mix(in srgb, var(--step-color) 75%, black)); color: #fff; border-color: var(--step-color); }
         body[data-theme="light"] .roadmap-label { color: #3c4043; }
         body[data-theme="light"] .roadmap-state { color: #5f6368; }
-        body[data-theme="light"] .roadmap-step.is-active .roadmap-label,
-        body[data-theme="light"] .roadmap-step.is-active .roadmap-state { color: #1967d2; }
+        body[data-theme="light"] .roadmap-step.is-active .roadmap-label { color: var(--step-color); }
+        body[data-theme="light"] .roadmap-step.is-active .roadmap-state { color: #5f6368; }
         body[data-theme="light"] .roadmap-step.is-complete .roadmap-state { color: #188038; }
         body[data-theme="light"] .roadmap-track { scrollbar-color: #bdc1c6 transparent; }
         #infographic-area > section { border-radius: 2rem !important; }
@@ -445,7 +457,7 @@
             </div>
         </section>
 
-        <section class="learning-roadmap" aria-labelledby="roadmap-title">
+        <section id="learning-roadmap" class="learning-roadmap" aria-labelledby="roadmap-title">
             <div class="roadmap-heading">
                 <div>
                     <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Tu recorrido</p>
@@ -456,6 +468,22 @@
             </div>
             <nav class="roadmap-track" id="tab-nav-container" role="tablist" aria-label="Etapas de la ruta de aprendizaje"></nav>
         </section>
+
+        <nav class="section-shortcuts" aria-label="Accesos rápidos por sección">
+            <p class="mb-2 text-xs font-bold uppercase tracking-[.16em] text-slate-400">Ir a una sección</p>
+            <div class="flex flex-wrap gap-2" id="section-shortcuts">
+                <button type="button" class="section-shortcut" data-target="learning-roadmap" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Ruta</button>
+                <button type="button" class="section-shortcut" data-target="reasoning-engine" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Razonamiento</button>
+                <button type="button" class="section-shortcut" data-target="learning-overview" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Fundamentos</button>
+                <button type="button" class="section-shortcut" data-target="launch-checklist" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Producción</button>
+                <button type="button" class="section-shortcut" data-target="prompts-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Prompts</button>
+                <button type="button" class="section-shortcut" data-target="code-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Código</button>
+                <button type="button" class="section-shortcut" data-target="vocabulary-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Vocabulario</button>
+                <button type="button" class="section-shortcut" data-target="quiz-section" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Reto</button>
+                <button type="button" class="section-shortcut" data-target="infographic-area" aria-pressed="false"><i class="fa-regular fa-square" aria-hidden="true"></i>Arquitectura</button>
+            </div>
+            <p id="section-shortcut-status" class="mt-2 text-xs text-slate-500" aria-live="polite"></p>
+        </nav>
 
         <section id="reasoning-engine" class="reasoning-engine max-w-7xl mx-auto mt-6" aria-labelledby="reasoning-title" aria-live="polite">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -469,7 +497,7 @@
             <ol id="reasoning-steps" class="reasoning-steps mt-5 grid gap-3 sm:grid-cols-2" aria-label="Pasos del motor de razonamiento"></ol>
         </section>
 
-        <section class="learning-overview" aria-labelledby="overview-title">
+        <section id="learning-overview" class="learning-overview" aria-labelledby="overview-title">
             <div class="mb-5 max-w-3xl">
                 <p class="text-xs font-bold uppercase tracking-[.18em] text-green-400">Fundamentos de producción</p>
                 <h2 id="overview-title" class="mt-1 text-2xl font-black text-white">De una idea a un agente fiable</h2>
@@ -499,7 +527,7 @@
             </div>
         </section>
 
-        <section class="launch-checklist" aria-labelledby="launch-checklist-title">
+        <section id="launch-checklist" class="launch-checklist" aria-labelledby="launch-checklist-title">
             <div class="overview-card">
                 <div class="mb-5">
                     <p class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400">Antes del lanzamiento</p>
@@ -527,7 +555,7 @@
             </div>
         </section>
 
-        <section class="learning-section" aria-labelledby="prompts-title">
+        <section id="prompts-section" class="learning-section" aria-labelledby="prompts-title">
             <div class="learning-panel">
                 <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Biblioteca práctica</p>
                 <h2 id="prompts-title" class="mt-1 text-2xl font-black text-white">Prompts para diseñar y desplegar agentes</h2>
@@ -587,7 +615,7 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             </div>
         </section>
 
-        <section class="learning-section" aria-labelledby="code-lab-title">
+        <section id="code-section" class="learning-section" aria-labelledby="code-lab-title">
             <div class="learning-panel">
                 <div class="mb-5 flex flex-wrap items-start justify-between gap-4">
                     <div>
@@ -614,7 +642,7 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             </div>
         </section>
 
-        <section class="learning-section" aria-labelledby="vocabulary-title">
+        <section id="vocabulary-section" class="learning-section" aria-labelledby="vocabulary-title">
             <div class="learning-panel">
                 <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Glosario esencial</p>
                 <h2 id="vocabulary-title" class="mt-1 text-2xl font-black text-white">Vocabulario de agentes</h2>
@@ -633,7 +661,7 @@ Entrega comandos como propuesta, explica cada uno y marca los valores que debo c
             </div>
         </section>
 
-        <section class="learning-section" aria-labelledby="quiz-title">
+        <section id="quiz-section" class="learning-section" aria-labelledby="quiz-title">
             <div class="learning-panel">
                 <p class="text-xs font-bold uppercase tracking-[.18em] text-green-400">Comprueba lo aprendido</p>
                 <h2 id="quiz-title" class="mt-1 text-2xl font-black text-white">Reto de agentes</h2>
@@ -1360,6 +1388,22 @@ adk run my_agent`,
             updateParksProgress();
         });
         updateParksProgress();
+        const sectionShortcutButtons = [...document.querySelectorAll(".section-shortcut")];
+        const sectionShortcutStatus = document.getElementById("section-shortcut-status");
+        sectionShortcutButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const target = document.getElementById(button.dataset.target);
+                const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                sectionShortcutButtons.forEach((shortcut) => {
+                    const selected = shortcut === button;
+                    shortcut.classList.toggle("is-selected", selected);
+                    shortcut.setAttribute("aria-pressed", String(selected));
+                    shortcut.querySelector("i").className = `fa-regular ${selected ? "fa-square-check" : "fa-square"}`;
+                });
+                sectionShortcutStatus.textContent = `Sección seleccionada: ${button.textContent.trim()}.`;
+                target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+            });
+        });
         renderModule();
     </script>
 </body>

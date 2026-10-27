@@ -46,4 +46,16 @@ Este repositorio contiene la arquitectura completa, demostraciones interactivas 
    GEMINI_API_KEY=tu_api_key_aqui
    GOOGLE_CLOUD_PROJECT=tu_proyecto_id
    ```
+
+## Participa y reporta problemas
+
+¿Encontraste un error o tienes una idea para mejorar el material? [Abre un Issue](https://github.com/edwinfer22/Gear-intro-to-Agents_Google/issues/new/choose) y elige la plantilla para errores o sugerencias. Para que sea más fácil reproducir un problema, incluye los pasos, el resultado esperado y el navegador o dispositivo utilizado.
+
+Antes de adjuntar capturas o fragmentos, elimina claves API, tokens, datos personales y cualquier otra información privada.
+
+## Código y derechos de uso
+
+El repositorio y la demostración son públicos para que se puedan consultar y recibir comentarios. No se ha añadido una licencia de software: esto no concede automáticamente permiso para reutilizar, modificar o distribuir el código. Si quieres permitir alguno de esos usos, define una licencia explícita.
+
+La página necesita enviar su HTML, CSS y JavaScript al navegador para funcionar; por eso no es posible impedir que un visitante los inspeccione o los guarde. No incluyas secretos ni datos confidenciales en el código publicado.
    

@@ -1,0 +1,25 @@
+name: Sugerir una mejora
+description: Propón contenido o una interacción para mejorar el aprendizaje.
+title: "[Sugerencia]: "
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: ¿Qué te gustaría mejorar o aprender?
+      description: Explica la necesidad o el tema que falta.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: ¿Qué propones?
+      description: Describe cómo podría ayudar esta mejora.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Ejemplos o contexto
+      description: Comparte referencias o ejemplos sin incluir información confidencial.
+    validations:
+      required: false

@@ -1,0 +1,43 @@
+name: Reportar un error
+description: Informa de un problema en la página o en el material de aprendizaje.
+title: "[Error]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: ¿Qué ocurrió?
+      description: Describe el problema y la sección donde aparece.
+      placeholder: Al seleccionar la etapa...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Pasos para reproducirlo
+      description: Enumera los pasos para que podamos comprobar el error.
+      placeholder: |
+        1. Abre...
+        2. Selecciona...
+        3. Observa...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: ¿Qué esperabas que ocurriera?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Navegador y dispositivo
+      placeholder: Chrome en Windows 11 / Safari en iPhone
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Capturas o contexto adicional
+      description: No incluyas contraseñas, tokens, claves API ni datos personales.
+    validations:
+      required: false

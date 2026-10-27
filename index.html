@@ -49,7 +49,47 @@
         body[data-theme="light"] #tab-nav-container button:not([aria-selected="true"]) { color: var(--google-muted) !important; }
         body[data-theme="light"] #tab-nav-container button[aria-selected="true"] { background: var(--google-blue) !important; }
         body[data-theme="light"] #theme-toggle { background: #fff !important; color: var(--google-ink) !important; border-color: var(--google-line) !important; }
-        body[data-theme="light"] #print-report { background: var(--google-blue) !important; }
+        body[data-theme="light"] #print-report { background: #fff !important; color: var(--google-blue) !important; border-color: var(--google-line) !important; }
+        .learning-roadmap { max-width: 80rem; margin: 0 auto; padding: 2rem 1rem 0; }
+        .roadmap-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+        .roadmap-track { display: flex; overflow-x: auto; padding: .75rem .25rem 1.4rem; scrollbar-width: thin; scrollbar-color: #475569 transparent; }
+        .roadmap-step { --step-color: var(--google-blue); position: relative; display: flex; flex: 1 0 150px; flex-direction: column; align-items: center; gap: .6rem; min-width: 0; padding: 0 .45rem; border: 0; background: transparent; color: #94a3b8; text-align: center; cursor: pointer; }
+        .roadmap-step:nth-child(4n + 2) { --step-color: var(--google-red); }
+        .roadmap-step:nth-child(4n + 3) { --step-color: #d99b00; }
+        .roadmap-step:nth-child(4n + 4) { --step-color: var(--google-green); }
+        .roadmap-step::after { position: absolute; z-index: 0; top: 1.35rem; left: calc(50% + 1.6rem); width: calc(100% - 3.2rem); height: 3px; border-radius: 9999px; background: #334155; content: ""; transition: background .35s ease, box-shadow .35s ease; }
+        .roadmap-step.is-complete::after, .roadmap-step.is-active::after { background: linear-gradient(90deg, var(--step-color), var(--google-green)); box-shadow: 0 0 10px color-mix(in srgb, var(--step-color) 45%, transparent); }
+        .roadmap-step:last-child::after { display: none; }
+        .roadmap-node { position: relative; z-index: 1; display: inline-flex; width: 3.1rem; height: 2.7rem; align-items: center; justify-content: center; border: 1px solid #475569; border-radius: 1.05rem; background: linear-gradient(145deg, #1e293b, #0f172a); color: #cbd5e1; box-shadow: 0 5px 12px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.12); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; }
+        .roadmap-node i { font-size: 1.1rem; }
+        .roadmap-step.is-complete .roadmap-node { border-color: var(--google-green); background: linear-gradient(145deg, #34a853, #137333); color: #fff; }
+        .roadmap-step.is-active .roadmap-node { border-color: var(--step-color); background: linear-gradient(145deg, color-mix(in srgb, var(--step-color) 70%, white), var(--step-color) 55%, color-mix(in srgb, var(--step-color) 72%, black)); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--step-color) 18%, transparent), 0 0 24px color-mix(in srgb, var(--step-color) 62%, transparent), inset 0 1px 0 rgba(255,255,255,.4); transform: translateY(-3px) scale(1.1); }
+        .roadmap-step.is-transitioning .roadmap-node { animation: roadmap-flash .75s ease-out; }
+        .roadmap-label { max-width: 9rem; color: #cbd5e1; font-size: .75rem; font-weight: 700; line-height: 1.35; transition: color .25s ease, transform .25s ease; }
+        .roadmap-state { color: #94a3b8; font-size: .625rem; line-height: 1; }
+        .roadmap-step.is-active .roadmap-label { color: var(--step-color); transform: translateY(-1px); }
+        .roadmap-step.is-active .roadmap-state { color: #93c5fd; }
+        .roadmap-step.is-complete .roadmap-state { color: #86efac; }
+        .roadmap-step:hover .roadmap-node { border-color: var(--step-color); transform: translateY(-3px) scale(1.08); }
+        .roadmap-step:focus-visible { outline: none; }
+        .roadmap-step:focus-visible .roadmap-node { outline: 3px solid color-mix(in srgb, var(--step-color) 60%, white); outline-offset: 4px; }
+        @keyframes roadmap-flash {
+            0% { filter: brightness(1); }
+            24% { filter: brightness(1.9); box-shadow: 0 0 0 9px color-mix(in srgb, var(--step-color) 28%, transparent), 0 0 32px color-mix(in srgb, var(--step-color) 90%, transparent); }
+            100% { filter: brightness(1); }
+        }
+        body[data-theme="light"] .roadmap-step { color: #64748b; }
+        body[data-theme="light"] .roadmap-step::after { background: #dadce0; }
+        body[data-theme="light"] .roadmap-step.is-complete::after, body[data-theme="light"] .roadmap-step.is-active::after { background: linear-gradient(90deg, var(--step-color), var(--google-green)); }
+        body[data-theme="light"] .roadmap-node { background: linear-gradient(145deg, #fff, #e8eaed); border-color: #cbd5e1; color: #5f6368; box-shadow: 0 5px 12px rgba(60,64,67,.12), inset 0 1px 0 #fff; }
+        body[data-theme="light"] .roadmap-step.is-complete .roadmap-node { background: #e6f4ea; color: #188038; border-color: #34a853; }
+        body[data-theme="light"] .roadmap-step.is-active .roadmap-node { background: linear-gradient(145deg, color-mix(in srgb, var(--step-color) 70%, white), var(--step-color) 55%, color-mix(in srgb, var(--step-color) 75%, black)); color: #fff; border-color: var(--step-color); }
+        body[data-theme="light"] .roadmap-label { color: #3c4043; }
+        body[data-theme="light"] .roadmap-state { color: #5f6368; }
+        body[data-theme="light"] .roadmap-step.is-active .roadmap-label,
+        body[data-theme="light"] .roadmap-step.is-active .roadmap-state { color: #1967d2; }
+        body[data-theme="light"] .roadmap-step.is-complete .roadmap-state { color: #188038; }
+        body[data-theme="light"] .roadmap-track { scrollbar-color: #bdc1c6 transparent; }
         #infographic-area > section { border-radius: 2rem !important; }
         #left-list article, #right-grid article { border-radius: 1.5rem !important; transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
         #left-list article:hover, #right-grid article:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(60,64,67,.12); }
@@ -59,11 +99,15 @@
         .brand-tone-yellow { color: #d99b00 !important; }
         .brand-tone-green { color: var(--google-green) !important; }
         .nav-icon { font-size: .95rem; }
-        .google-corner { position: fixed; z-index: 0; width: clamp(110px, 17vw, 220px); height: clamp(110px, 17vw, 220px); opacity: .45; pointer-events: none; }
-        .google-corner path { fill: none; stroke-width: 8; stroke-linecap: round; }
-        .google-corner-top { top: -50px; left: -50px; }
-        .google-corner-bottom { right: -50px; bottom: -50px; transform: rotate(180deg); }
-        .agent-watermark { position: absolute; z-index: 1; top: 50%; right: 2rem; width: clamp(210px, 28vw, 340px); transform: translateY(-50%); opacity: .25; pointer-events: none; }
+        .matatena { position: fixed; z-index: 0; width: clamp(52px, 7vw, 88px); height: clamp(52px, 7vw, 88px); opacity: .09; pointer-events: none; filter: drop-shadow(0 5px 5px rgba(0,0,0,.16)); }
+        .matatena-top-left { top: .75rem; left: .75rem; transform: rotate(-12deg); }
+        .matatena-top-right { top: 5.5rem; right: 1rem; transform: rotate(72deg); }
+        .matatena-bottom-left { bottom: 1rem; left: 1.25rem; transform: rotate(168deg); }
+        .matatena-bottom-right { right: .75rem; bottom: 1rem; transform: rotate(252deg); }
+        .matatena-definitions { position: absolute; width: 0; height: 0; overflow: hidden; }
+        .matatena use { filter: url(#matatena-shadow); }
+        body[data-theme="dark"] .matatena { opacity: .12; }
+        .agent-watermark { position: absolute; z-index: 1; right: 1rem; bottom: -3.5rem; width: clamp(150px, 20vw, 245px); opacity: .18; pointer-events: none; }
         .agent-watermark .agent-shell { fill: url(#agent-shell-gradient); stroke: #9aa0a6; stroke-width: 3; }
         .agent-watermark .agent-outline { fill: none; stroke: #9aa0a6; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
         .agent-watermark .agent-face { fill: #202124; }
@@ -76,8 +120,108 @@
         header, main, footer { position: relative; z-index: 2; }
         .agent-hero { position: relative; isolation: isolate; overflow: hidden; border: 1px solid rgba(148,163,184,.2); border-radius: 2rem; background: radial-gradient(ellipse at 85% 50%, rgba(66,133,244,.18), transparent 42%), linear-gradient(120deg, #111827, #172554 55%, #111827); }
         .agent-hero::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--google-blue) 0 25%, var(--google-red) 25% 50%, var(--google-yellow) 50% 75%, var(--google-green) 75%); }
-        .agent-hero-content { position: relative; z-index: 2; max-width: 720px; }
+        .agent-hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; text-align: center; }
+        .agent-hero-content > p:not(.text-blue-300) { margin-left: auto; margin-right: auto; }
+        .agent-skills-badge { position: absolute; z-index: 3; top: 1.25rem; right: 1.25rem; display: inline-flex; align-items: center; gap: .6rem; padding: .6rem .9rem; border: 1px solid rgba(138,180,248,.4); border-radius: 9999px; background: rgba(15,23,42,.8); color: #e8eaed; font-size: .75rem; font-weight: 700; letter-spacing: .04em; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+        .skill-mark { width: 1.8rem; height: 1.8rem; flex: 0 0 1.8rem; }
+        .skill-mark .skill-link { fill: none; stroke: #9aa0a6; stroke-width: 3; stroke-linecap: round; }
+        .skill-mark .skill-blue { fill: var(--google-blue); }
+        .skill-mark .skill-red { fill: var(--google-red); }
+        .skill-mark .skill-yellow { fill: var(--google-yellow); }
+        .skill-mark .skill-green { fill: var(--google-green); }
+        .site-header-layout { position: relative; justify-content: center; min-height: 5rem; }
+        .site-brand { width: 100%; text-align: center; }
+        .site-title { justify-content: center; flex-wrap: wrap; }
+        .site-title .skill-mark { width: 2rem; height: 2rem; flex-basis: 2rem; }
+        .site-controls { position: absolute; inset: 0; margin: 0; pointer-events: none; }
+        .theme-toggle, #print-report { position: absolute; top: 50%; display: inline-flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; padding: 0 !important; border: 1px solid #334155; border-radius: 9999px; pointer-events: auto; transform: translateY(-50%); }
+        .theme-toggle { left: 1.5rem; }
+        #print-report { right: 1.5rem; border-radius: .75rem; }
+        .theme-toggle i { font-size: 1.15rem !important; }
+        #print-report i { font-size: .95rem !important; }
+        .learning-overview { max-width: 80rem; margin: 0 auto; padding: 2rem 1rem 0; }
+        .overview-card { border: 1px solid #334155; border-radius: 1.25rem; background: rgba(15,23,42,.75); padding: 1.25rem; }
+        .overview-card h3 { color: #e2e8f0; }
+        .overview-card p { color: #94a3b8; }
+        .launch-checklist { max-width: 80rem; margin: 0 auto; padding: 1.5rem 1rem 0; }
+        .checklist-item { display: flex; align-items: flex-start; gap: .75rem; }
+        .checklist-item i { margin-top: .2rem; }
+        .learning-section { max-width: 80rem; margin: 0 auto; padding: 1.5rem 1rem 0; }
+        .learning-panel { border: 1px solid #334155; border-radius: 1.5rem; background: rgba(15,23,42,.78); padding: 1.5rem; }
+        .prompt-card { border: 1px solid #334155; border-radius: 1rem; background: rgba(30,41,59,.55); padding: 1rem; }
+        .prompt-copy, .code-action { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid #475569; border-radius: .65rem; background: #1e293b; color: #e2e8f0; padding: .5rem .75rem; font-size: .75rem; font-weight: 700; }
+        .prompt-copy:hover, .code-action:hover { border-color: var(--google-blue); }
+        .prompt-text { width: 100%; min-height: 7rem; resize: vertical; border: 1px solid #334155; border-radius: .75rem; background: #0b1220; color: #cbd5e1; padding: .8rem; font: 500 .8rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; }
+        .code-lab { overflow: hidden; border: 1px solid #334155; border-radius: 1rem; background: #0b1220; }
+        .code-lab-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; border-bottom: 1px solid #334155; background: #111827; padding: .75rem 1rem; }
+        .code-tab { border: 1px solid transparent; border-radius: .6rem; padding: .45rem .75rem; color: #94a3b8; font-size: .8rem; font-weight: 700; }
+        .code-tab[aria-selected="true"] { border-color: rgba(66,133,244,.5); background: rgba(66,133,244,.15); color: #bfdbfe; }
+        .code-output { min-height: 13rem; overflow: auto; padding: 1.1rem; color: #d1d5db; font: 500 .8rem/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; tab-size: 4; }
+        .code-note { border-top: 1px solid #334155; padding: .75rem 1rem; color: #94a3b8; font-size: .8rem; line-height: 1.5; }
+        .copy-status { min-height: 1.25rem; }
+        body[data-theme="light"] .prompt-card { background: #f8fafd; border-color: var(--google-line); }
+        body[data-theme="light"] .prompt-text { background: #fff; color: #3c4043; border-color: var(--google-line); }
+        body[data-theme="light"] .code-lab { background: #f8fafd; border-color: var(--google-line); }
+        body[data-theme="light"] .code-lab-toolbar { background: #f1f3f4; border-color: var(--google-line); }
+        body[data-theme="light"] .code-tab { color: #5f6368; }
+        body[data-theme="light"] .code-tab[aria-selected="true"] { background: #e8f0fe; color: #1967d2; }
+        body[data-theme="light"] .code-output { color: #202124; }
+        body[data-theme="light"] .code-note { color: #5f6368; border-color: var(--google-line); }
+        body[data-theme="light"] .prompt-copy, body[data-theme="light"] .code-action { background: #fff; color: #3c4043; border-color: var(--google-line); }
+        .vocab-card, .quiz-question { border: 1px solid #334155; border-radius: 1rem; background: rgba(30,41,59,.55); padding: 1rem; }
+        .vocab-card dt, .quiz-question legend { color: #f1f5f9; font-weight: 700; }
+        .vocab-card dd, .quiz-option { color: #cbd5e1; }
+        .quiz-option { display: flex; align-items: flex-start; gap: .65rem; cursor: pointer; border-radius: .75rem; padding: .65rem .75rem; }
+        .quiz-option:hover { background: rgba(148,163,184,.1); }
+        .quiz-option input { margin-top: .25rem; accent-color: var(--google-blue); }
+        .quiz-question[data-result="correct"] { border-color: var(--google-green); }
+        .quiz-question[data-result="incorrect"] { border-color: var(--google-red); }
+        .quiz-feedback { min-height: 1.25rem; }
+        .quiz-game-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "board" "questions"; gap: 1rem; align-items: start; }
+        .quiz-question-list { grid-area: questions; min-width: 0; }
+        .parks-board-card { position: sticky; top: 1rem; border: 1px solid #334155; border-radius: 1.25rem; background: rgba(15,23,42,.8); padding: 1rem; }
+        .parks-board-card { grid-area: board; }
+        .parks-board { display: block; width: min(100%, 19rem); margin: .5rem auto; overflow: visible; }
+        .parks-route { fill: none; stroke: #cbd5e1; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
+        .parks-space { fill: #0f172a; stroke: #e2e8f0; stroke-width: 2; transition: fill .25s ease, stroke .25s ease; }
+        .parks-space.is-reached { fill: var(--google-green); stroke: #fff; }
+        .parks-token { transition: transform .55s cubic-bezier(.2,.8,.2,1); filter: drop-shadow(0 3px 4px rgba(0,0,0,.4)); }
+        .quiz-check-answer { min-height: 2.5rem; }
+        .quiz-check-answer:disabled { cursor: default; opacity: .7; }
+        .quiz-award { display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(251,188,5,.5); border-radius: 1rem; background: linear-gradient(120deg, rgba(251,188,5,.12), rgba(66,133,244,.12)); padding: 1rem 1.25rem; }
+        .quiz-award[hidden] { display: none; }
+        .award-medal { width: 4rem; height: 4rem; flex: 0 0 4rem; }
+        body[data-theme="light"] .learning-panel { background: #fff; border-color: var(--google-line); }
+        body[data-theme="light"] .vocab-card, body[data-theme="light"] .quiz-question { background: #f8fafd; border-color: var(--google-line); }
+        body[data-theme="light"] .vocab-card dt, body[data-theme="light"] .quiz-question legend { color: var(--google-ink); }
+        body[data-theme="light"] .vocab-card dd, body[data-theme="light"] .quiz-option { color: #3c4043; }
+        body[data-theme="light"] .quiz-option:hover { background: #e8f0fe; }
+        body[data-theme="light"] .parks-board-card { background: #f8fafd; border-color: var(--google-line); }
+        body[data-theme="light"] .parks-board-card h3 { color: var(--google-ink); }
+        body[data-theme="light"] .parks-board-card > p { color: var(--google-muted); }
+        body[data-theme="light"] .parks-board-card .rounded-full { background: #e8f0fe; color: #1967d2; }
+        body[data-theme="light"] .parks-board-card #parks-status { color: #3c4043; }
+        body[data-theme="light"] .parks-route { stroke: #5f6368; }
+        body[data-theme="light"] .parks-space { fill: #fff; stroke: #5f6368; }
+        body[data-theme="light"] .parks-space.is-reached { fill: var(--google-green); stroke: #fff; }
+        body[data-theme="light"] .quiz-award { background: linear-gradient(120deg, #fef7e0, #e8f0fe); }
+        body[data-theme="light"] .overview-card { background: #fff; border-color: var(--google-line); }
+        body[data-theme="light"] .overview-card h3 { color: var(--google-ink); }
+        body[data-theme="light"] .overview-card p { color: var(--google-muted); }
         .agent-flow-step { min-width: 0; border: 1px solid rgba(148,163,184,.24); border-radius: 1rem; background: rgba(15,23,42,.66); padding: .8rem 1rem; }
+        .reasoning-engine { margin-bottom: 1.5rem; border: 1px solid rgba(66,133,244,.32); border-radius: 1.5rem; background: radial-gradient(ellipse at 5% 0%, rgba(66,133,244,.12), transparent 42%), linear-gradient(135deg, rgba(15,23,42,.96), rgba(17,24,39,.94)); padding: 1.25rem; }
+        .reasoning-step { position: relative; min-width: 0; border: 1px solid rgba(148,163,184,.2); border-radius: 1rem; background: rgba(15,23,42,.66); padding: .9rem; }
+        .reasoning-step:not(:last-child)::after { position: absolute; top: 1.35rem; right: -.7rem; width: .7rem; height: 2px; background: linear-gradient(90deg, var(--google-blue), var(--google-green)); content: ""; }
+        .reasoning-step-number { display: inline-flex; width: 1.8rem; height: 1.8rem; align-items: center; justify-content: center; border-radius: .65rem; background: rgba(66,133,244,.15); color: #8ab4f8; font-size: .75rem; font-weight: 900; }
+        .reasoning-step h4 { margin-top: .65rem; color: #f1f5f9; font-size: .85rem; font-weight: 800; }
+        .reasoning-step p { margin-top: .35rem; color: #cbd5e1; font-size: .75rem; line-height: 1.55; }
+        body[data-theme="light"] .reasoning-engine { background: radial-gradient(ellipse at 5% 0%, rgba(66,133,244,.09), transparent 42%), linear-gradient(135deg, #fff, #f8fafd); border-color: #c6dafc; }
+        body[data-theme="light"] #reasoning-title { color: #202124; }
+        body[data-theme="light"] #reasoning-scenario { color: #3c4043; }
+        body[data-theme="light"] .reasoning-engine > div > span { background: #fff; border-color: var(--google-line); color: #5f6368; }
+        body[data-theme="light"] .reasoning-step { background: #fff; border-color: var(--google-line); }
+        body[data-theme="light"] .reasoning-step h4 { color: #202124; }
+        body[data-theme="light"] .reasoning-step p { color: #5f6368; }
         .agent-flow-step:nth-of-type(1) i { color: var(--google-blue); }
         .agent-flow-step:nth-of-type(2) i { color: var(--google-yellow); }
         .agent-flow-step:nth-of-type(3) i { color: var(--google-green); }
@@ -88,85 +232,159 @@
         body[data-theme="light"] .agent-hero h2 { color: var(--google-ink) !important; }
         body[data-theme="light"] .agent-hero p:not(.text-blue-300) { color: var(--google-muted) !important; }
         body[data-theme="light"] .agent-flow-step span { color: #3c4043 !important; }
+        body[data-theme="light"] .agent-skills-badge { background: #fff; color: var(--google-ink); border-color: var(--google-line); }
         body[data-theme="light"] .agent-watermark { opacity: .15; }
         body[data-theme="dark"] { background: #0f172a !important; }
         body[data-theme="dark"] .brand-icon { background: #1e293b; }
         body[data-theme="dark"] #left-list article, body[data-theme="dark"] #right-grid article { border-color: #334155 !important; }
         body[data-theme="dark"] .agent-watermark { opacity: .24; }
         @media (max-width: 767px) {
-            .google-corner { opacity: .28; }
-            .google-corner-top { top: -65px; left: -65px; }
-            .google-corner-bottom { right: -65px; bottom: -65px; }
-            .agent-watermark { right: -2rem; width: min(62vw, 250px); opacity: .14; }
+            .matatena { width: 52px; height: 52px; opacity: .08; }
+            .matatena-top-left { top: .25rem; left: .25rem; }
+            .matatena-top-right { top: 6rem; right: .25rem; }
+            .matatena-bottom-left { bottom: .25rem; left: .25rem; }
+            .matatena-bottom-right { bottom: .25rem; right: .25rem; }
+            .agent-watermark { right: -1.5rem; bottom: -2.5rem; width: min(48vw, 190px); opacity: .13; }
             .agent-hero-content { max-width: 100%; }
             .agent-flow-step { padding: .65rem .75rem; }
+            .agent-hero { padding-top: 5rem !important; }
+            .agent-skills-badge { top: 1rem; right: 1rem; }
+            .learning-roadmap { padding-top: 1.5rem; }
+            .roadmap-heading { align-items: flex-start; }
+            .roadmap-step { flex-basis: 126px; }
+            .reasoning-step:not(:last-child)::after { display: none; }
+            .site-header-layout { padding-top: 4.5rem; padding-bottom: 1.25rem; }
+            .site-controls { position: absolute; top: .75rem; right: 1rem; left: 1rem; height: 2.5rem; }
+            .theme-toggle, #print-report { top: 0; transform: none; }
+            .theme-toggle { left: 0; }
+            #print-report { right: 0; }
+            .site-title { font-size: 1.1rem; }
         }
+        @media (min-width: 1024px) {
+            .quiz-game-layout { grid-template-columns: minmax(0, 1fr) 19rem; grid-template-areas: "questions board"; }
+        }
+        @media (min-width: 768px) {
+            .reasoning-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
+        @page { size: A4; margin: 10mm; }
         @media print {
-            body { background: white !important; color: #0f172a !important; }
-            header button, #tab-nav-container, footer { display: none !important; }
-            .google-corner, .agent-watermark { display: none !important; }
-            #infographic-area { display: block !important; }
-            #infographic-area > section { margin-bottom: 1rem; break-inside: avoid; }
-            #infographic-area section { background: white !important; color: #0f172a !important; border-color: #cbd5e1 !important; box-shadow: none !important; }
-            #infographic-area h2, #infographic-area h3, #infographic-area p, #infographic-area span { color: #0f172a !important; }
+            * { box-shadow: none !important; text-shadow: none !important; }
+            body { background: #fff !important; color: #202124 !important; font-size: 9pt !important; print-color-adjust: economy; -webkit-print-color-adjust: economy; }
+            header button, #tab-nav-container, footer, .matatena, .agent-watermark, .agent-skills-badge, .agent-flow-arrow, .roadmap-progress { display: none !important; }
+            header { position: static !important; background: #fff !important; border: 0 !important; }
+            .site-header-layout { min-height: 0 !important; padding: 0 0 6mm !important; }
+            .site-title { color: #202124 !important; font-size: 16pt !important; }
+            .site-brand > p { color: #5f6368 !important; }
+            .agent-hero { padding: 6mm !important; background: #fff !important; border: 1px solid #dadce0 !important; border-radius: 3mm !important; }
+            .agent-hero-content { max-width: none !important; }
+            .agent-hero h2, .agent-hero p, .agent-hero-content > p { color: #202124 !important; }
+            .agent-flow-step { padding: 2mm 3mm !important; background: #fff !important; border-color: #dadce0 !important; }
+            .agent-flow-step span { color: #3c4043 !important; }
+            .learning-overview, .learning-roadmap, .launch-checklist, .learning-section { display: none !important; }
+            main { padding: 5mm 0 !important; }
+            #infographic-area { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 4mm !important; padding: 0 !important; background: #fff !important; }
+            #infographic-area > section { margin: 0 !important; padding: 5mm !important; border-radius: 3mm !important; break-inside: avoid; }
+            #infographic-area section, #left-list article, #right-grid article { background: #fff !important; color: #202124 !important; border-color: #dadce0 !important; }
+            #infographic-area h2, #infographic-area h3, #infographic-area p, #infographic-area span { color: #202124 !important; }
+            #left-list article, #right-grid article { break-inside: avoid; }
             #infographic-area [data-card-detail],
             #infographic-area [data-component-detail] { display: block !important; }
+            #left-list .hidden, #right-grid .hidden { display: block !important; }
         }
     </style>
 </head>
 <body data-theme="dark" class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
 
-    <svg class="google-corner google-corner-top" viewBox="0 0 180 180" aria-hidden="true">
-        <path d="M12 150 A138 138 0 0 1 150 12" stroke="#4285f4"></path>
-        <path d="M34 166 A132 132 0 0 1 166 34" stroke="#ea4335"></path>
-        <path d="M58 178 A120 120 0 0 1 178 58" stroke="#fbbc05"></path>
-        <path d="M82 180 A98 98 0 0 1 180 82" stroke="#34a853"></path>
+    <svg class="matatena-definitions" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="spoke-blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9bc2ff"></stop><stop offset=".45" stop-color="#4285f4"></stop><stop offset="1" stop-color="#174ea6"></stop></linearGradient>
+            <linearGradient id="spoke-red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb4aa"></stop><stop offset=".45" stop-color="#ea4335"></stop><stop offset="1" stop-color="#a50e0e"></stop></linearGradient>
+            <linearGradient id="spoke-yellow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff1a8"></stop><stop offset=".45" stop-color="#fbbc05"></stop><stop offset="1" stop-color="#c58b00"></stop></linearGradient>
+            <linearGradient id="spoke-green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8dab5"></stop><stop offset=".45" stop-color="#34a853"></stop><stop offset="1" stop-color="#137333"></stop></linearGradient>
+            <radialGradient id="hub-gloss" cx=".32" cy=".25" r=".8"><stop stop-color="#fff"></stop><stop offset=".5" stop-color="#dfe7f3"></stop><stop offset="1" stop-color="#7c8da5"></stop></radialGradient>
+            <radialGradient id="tip-blue" cx=".3" cy=".25"><stop stop-color="#d2e3fc"></stop><stop offset=".5" stop-color="#4285f4"></stop><stop offset="1" stop-color="#174ea6"></stop></radialGradient>
+            <radialGradient id="tip-red" cx=".3" cy=".25"><stop stop-color="#fce8e6"></stop><stop offset=".5" stop-color="#ea4335"></stop><stop offset="1" stop-color="#a50e0e"></stop></radialGradient>
+            <radialGradient id="tip-yellow" cx=".3" cy=".25"><stop stop-color="#fef7e0"></stop><stop offset=".5" stop-color="#fbbc05"></stop><stop offset="1" stop-color="#c58b00"></stop></radialGradient>
+            <radialGradient id="tip-green" cx=".3" cy=".25"><stop stop-color="#e6f4ea"></stop><stop offset=".5" stop-color="#34a853"></stop><stop offset="1" stop-color="#137333"></stop></radialGradient>
+            <filter id="matatena-shadow" x="-35%" y="-35%" width="170%" height="180%"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#020617" flood-opacity=".6"></feDropShadow></filter>
+            <symbol id="matatena-shape" viewBox="0 0 120 120">
+                <g fill="none" stroke="#101827" stroke-width="13" stroke-linecap="round" opacity=".8">
+                    <path d="M60 60 60 13M60 60 100 30M60 60 107 78M60 60 72 108M60 60 22 92M60 60 14 45"></path>
+                </g>
+                <g fill="none" stroke-width="9" stroke-linecap="round">
+                    <path d="M60 60 60 13M60 60 100 30" stroke="url(#spoke-blue)"></path>
+                    <path d="M60 60 107 78M60 60 72 108" stroke="url(#spoke-red)"></path>
+                    <path d="M60 60 22 92" stroke="url(#spoke-yellow)"></path>
+                    <path d="M60 60 14 45" stroke="url(#spoke-green)"></path>
+                </g>
+                <g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".48">
+                    <path d="M57 55 58 16M57 55 96 31M57 55 102 75M57 55 70 102M56 56 24 89M56 56 18 46"></path>
+                </g>
+                <g stroke="#fff" stroke-width="2">
+                    <circle cx="60" cy="13" r="8" fill="url(#tip-blue)"></circle>
+                    <circle cx="100" cy="30" r="8" fill="url(#tip-blue)"></circle>
+                    <circle cx="107" cy="78" r="8" fill="url(#tip-red)"></circle>
+                    <circle cx="72" cy="108" r="8" fill="url(#tip-red)"></circle>
+                    <circle cx="22" cy="92" r="8" fill="url(#tip-yellow)"></circle>
+                    <circle cx="14" cy="45" r="8" fill="url(#tip-green)"></circle>
+                </g>
+                <circle cx="60" cy="60" r="15" fill="#334155" opacity=".65"></circle>
+                <circle cx="59" cy="58" r="12" fill="url(#hub-gloss)" stroke="#fff" stroke-width="2"></circle>
+                <ellipse cx="55" cy="54" rx="4" ry="2.5" fill="#fff" opacity=".8"></ellipse>
+            </symbol>
+        </defs>
     </svg>
-    <svg class="google-corner google-corner-bottom" viewBox="0 0 180 180" aria-hidden="true">
-        <path d="M12 150 A138 138 0 0 1 150 12" stroke="#4285f4"></path>
-        <path d="M34 166 A132 132 0 0 1 166 34" stroke="#ea4335"></path>
-        <path d="M58 178 A120 120 0 0 1 178 58" stroke="#fbbc05"></path>
-        <path d="M82 180 A98 98 0 0 1 180 82" stroke="#34a853"></path>
-    </svg>
+    <svg class="matatena matatena-top-left" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
+    <svg class="matatena matatena-top-right" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
+    <svg class="matatena matatena-bottom-left" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
+    <svg class="matatena matatena-bottom-right" viewBox="0 0 120 120" aria-hidden="true"><use href="#matatena-shape"></use></svg>
     <!-- Encabezado de Navegación Futurista -->
     <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800" aria-label="Colores de Google">
-                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#4285f4]"></span>
-                    <span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_#ea4335]"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_10px_#fbbc05]"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_#34a853]"></span>
-                </div>
-                <div>
-                    <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
-                        AI Agents & Gemini Enterprise
-                        <span class="text-[10px] bg-gradient-to-r from-blue-500 via-red-500 to-green-500 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
-                    </h1>
-                    <p class="text-xs text-slate-400 font-medium">Arquitectura, skills y despliegue de agentes autónomos</p>
-                </div>
+        <div class="site-header-layout max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center gap-4">
+            <div class="site-brand">
+                <h1 class="site-title text-xl font-black tracking-tight text-white flex items-center gap-2">
+                    <svg class="skill-mark" viewBox="0 0 36 36" role="img" aria-label="Icono Skill">
+                        <path class="skill-link" d="M18 18 8 8m10 10 10-10M18 18 8 28m10-10 10 10"></path>
+                        <circle class="skill-blue" cx="18" cy="18" r="6"></circle>
+                        <circle class="skill-red" cx="8" cy="8" r="5"></circle>
+                        <circle class="skill-yellow" cx="28" cy="8" r="5"></circle>
+                        <circle class="skill-green" cx="8" cy="28" r="5"></circle>
+                        <circle class="skill-blue" cx="28" cy="28" r="5"></circle>
+                    </svg>
+                    <span>AI Agents &amp; Gemini Enterprise</span>
+                    <span class="text-[10px] bg-gradient-to-r from-blue-500 via-red-500 to-green-500 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
+                </h1>
+                <p class="text-xs text-slate-400 font-medium">Arquitectura, skills y despliegue de agentes autónomos</p>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-3">
-                <button type="button" id="theme-toggle" aria-label="Cambiar al modo día" aria-pressed="false" class="bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-all flex items-center gap-3 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
-                    <i class="fa-solid fa-sun text-amber-400 text-xl drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
-                    <span>Día / Noche</span>
-                    <i class="fa-solid fa-moon text-indigo-300 text-xl drop-shadow-[0_0_8px_rgba(165,180,252,0.6)]" aria-hidden="true"></i>
+            <div class="site-controls flex flex-wrap justify-center items-center gap-2">
+                <button type="button" id="theme-toggle" aria-label="Cambiar al modo día" aria-pressed="false" title="Cambiar al modo día" class="theme-toggle bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white transition-all shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
+                    <i id="theme-icon" class="fa-solid fa-sun text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
                 </button>
-                <button type="button" id="print-report" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
-                    <i class="fa-solid fa-file-arrow-down text-lg" aria-hidden="true"></i> Imprimir / Guardar PDF
+                <button type="button" id="print-report" aria-label="Guardar esta vista como PDF" title="Guardar como PDF" class="bg-blue-600 hover:bg-blue-500 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
+                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
-        <div class="bg-slate-950 border-t border-slate-800/60 overflow-x-auto scrollbar-none">
-            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container" role="tablist" aria-label="Temas de la infografía">
-            </nav>
-        </div>
     </header>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8" aria-labelledby="agent-hero-title">
         <div class="agent-hero px-6 py-8 sm:px-10 sm:py-10">
+            <div class="agent-skills-badge" aria-label="Skill">
+                <svg class="skill-mark" viewBox="0 0 36 36" aria-hidden="true">
+                    <path class="skill-link" d="M18 18 8 8m10 10 10-10M18 18 8 28m10-10 10 10"></path>
+                    <circle class="skill-blue" cx="18" cy="18" r="6"></circle>
+                    <circle class="skill-red" cx="8" cy="8" r="5"></circle>
+                    <circle class="skill-yellow" cx="28" cy="8" r="5"></circle>
+                    <circle class="skill-green" cx="8" cy="28" r="5"></circle>
+                    <circle class="skill-blue" cx="28" cy="28" r="5"></circle>
+                </svg>
+                <span>Skill</span>
+            </div>
             <svg class="agent-watermark" viewBox="0 0 360 400" aria-hidden="true">
         <defs>
             <linearGradient id="agent-shell-gradient" x1="0" x2="1" y1="0" y2="1">
@@ -227,9 +445,308 @@
             </div>
         </section>
 
-    <!-- Lienzo de la Infografía -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        <div id="infographic-area" role="tabpanel" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-slate-900 p-2 rounded-2xl">
+        <section class="learning-roadmap" aria-labelledby="roadmap-title">
+            <div class="roadmap-heading">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Tu recorrido</p>
+                    <h2 id="roadmap-title" class="mt-1 text-xl font-black text-white">Ruta de aprendizaje</h2>
+                    <p class="mt-1 text-sm text-slate-400">Explora cada etapa en orden o salta directamente al tema que necesites.</p>
+                </div>
+                <p id="roadmap-progress" class="shrink-0 rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-bold text-slate-300" aria-live="polite"></p>
+            </div>
+            <nav class="roadmap-track" id="tab-nav-container" role="tablist" aria-label="Etapas de la ruta de aprendizaje"></nav>
+        </section>
+
+        <section id="reasoning-engine" class="reasoning-engine max-w-7xl mx-auto mt-6" aria-labelledby="reasoning-title" aria-live="polite">
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                    <p class="text-xs font-black uppercase tracking-[.18em] text-blue-400"><i class="fa-solid fa-microchip mr-1" aria-hidden="true"></i>Motor de razonamiento · vista guiada</p>
+                    <h2 id="reasoning-title" class="mt-1 text-xl font-black text-white">Motor de razonamiento</h2>
+                    <p id="reasoning-scenario" class="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300"></p>
+                </div>
+                <span class="max-w-xs rounded-xl border border-slate-700 bg-slate-900/70 px-3 py-2 text-xs leading-relaxed text-slate-400">Resumen explicable de decisiones y controles; no expone razonamiento interno privado del modelo.</span>
+            </div>
+            <ol id="reasoning-steps" class="reasoning-steps mt-5 grid gap-3 sm:grid-cols-2" aria-label="Pasos del motor de razonamiento"></ol>
+        </section>
+
+        <section class="learning-overview" aria-labelledby="overview-title">
+            <div class="mb-5 max-w-3xl">
+                <p class="text-xs font-bold uppercase tracking-[.18em] text-green-400">Fundamentos de producción</p>
+                <h2 id="overview-title" class="mt-1 text-2xl font-black text-white">De una idea a un agente fiable</h2>
+                <p class="mt-2 text-sm leading-relaxed text-slate-400">Un agente combina un modelo con instrucciones, contexto y herramientas. Para llevarlo a producción, diseña el flujo completo: qué puede decidir, qué puede hacer y cómo se comprueba cada resultado.</p>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <article class="overview-card">
+                    <i class="fa-solid fa-bullseye text-xl text-blue-400" aria-hidden="true"></i>
+                    <h3 class="mt-3 font-bold">1. Define el objetivo</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Acota la tarea, sus entradas, el resultado esperado y los casos en que el agente debe detenerse o pedir aclaraciones.</p>
+                </article>
+                <article class="overview-card">
+                    <i class="fa-solid fa-book-open text-xl text-red-400" aria-hidden="true"></i>
+                    <h3 class="mt-3 font-bold">2. Prepara el contexto</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Entrega instrucciones relevantes y fuentes autorizadas. Recupera solo los datos necesarios y conserva su procedencia para poder verificarlos.</p>
+                </article>
+                <article class="overview-card">
+                    <i class="fa-solid fa-screwdriver-wrench text-xl text-yellow-400" aria-hidden="true"></i>
+                    <h3 class="mt-3 font-bold">3. Conecta herramientas</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Expón acciones concretas con contratos claros, validación de parámetros y permisos de mínimo privilegio; confirma antes de acciones sensibles.</p>
+                </article>
+                <article class="overview-card">
+                    <i class="fa-solid fa-chart-line text-xl text-green-400" aria-hidden="true"></i>
+                    <h3 class="mt-3 font-bold">4. Evalúa y observa</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Mide calidad, finalización, latencia, coste y errores. Registra llamadas a herramientas y usa pruebas repetibles para mejorar con seguridad.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="launch-checklist" aria-labelledby="launch-checklist-title">
+            <div class="overview-card">
+                <div class="mb-5">
+                    <p class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400">Antes del lanzamiento</p>
+                    <h2 id="launch-checklist-title" class="mt-1 text-xl font-black text-white">Lista de verificación para producción</h2>
+                    <p class="mt-2 text-sm leading-relaxed text-slate-400">La autonomía debe crecer al mismo ritmo que la observabilidad y los controles. Revisa estos puntos antes de ampliar el acceso o automatizar acciones de impacto.</p>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="checklist-item">
+                        <i class="fa-solid fa-circle-check text-green-400" aria-hidden="true"></i>
+                        <div><h3 class="font-bold">Pruebas con casos reales</h3><p class="mt-1 text-sm leading-relaxed">Incluye casos normales, entradas ambiguas, datos incompletos y errores de herramientas. Define criterios de aceptación medibles antes de cambiar prompts o modelos.</p></div>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fa-solid fa-lock text-blue-400" aria-hidden="true"></i>
+                        <div><h3 class="font-bold">Permisos y datos mínimos</h3><p class="mt-1 text-sm leading-relaxed">Separa lectura de escritura, limita cada conector a los recursos necesarios y evita enviar información personal si no aporta valor a la tarea.</p></div>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fa-solid fa-hand text-red-400" aria-hidden="true"></i>
+                        <div><h3 class="font-bold">Aprobación y recuperación</h3><p class="mt-1 text-sm leading-relaxed">Solicita confirmación en operaciones irreversibles o externas. Diseña cancelación, reintentos acotados y una salida segura cuando el servicio no responde.</p></div>
+                    </div>
+                    <div class="checklist-item">
+                        <i class="fa-solid fa-chart-simple text-yellow-400" aria-hidden="true"></i>
+                        <div><h3 class="font-bold">Monitoreo y mejora</h3><p class="mt-1 text-sm leading-relaxed">Registra resultados, duración, coste y llamadas a herramientas con protección de datos. Revisa fallos periódicamente y conserva una forma de volver a una versión estable.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="learning-section" aria-labelledby="prompts-title">
+            <div class="learning-panel">
+                <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Biblioteca práctica</p>
+                <h2 id="prompts-title" class="mt-1 text-2xl font-black text-white">Prompts para diseñar y desplegar agentes</h2>
+                <p class="mt-2 mb-5 text-sm leading-relaxed text-slate-400">Copia una plantilla y reemplaza los campos entre corchetes. Pide al modelo que aclare requisitos antes de proponer cambios o ejecutar acciones.</p>
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <article class="prompt-card">
+                        <div class="mb-3 flex items-center justify-between gap-3">
+                            <h3 class="font-bold text-slate-100">1. Diseñar el agente</h3>
+                            <button type="button" class="prompt-copy" data-copy-target="prompt-design"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar</button>
+                        </div>
+                        <textarea id="prompt-design" class="prompt-text" readonly>Actúa como arquitecto de agentes de IA. Diseña un agente para [objetivo y usuarios].
+
+Antes de proponer una solución, pregunta por requisitos ambiguos. Después entrega:
+1) alcance, límites y criterios de éxito medibles;
+2) instrucciones del agente y contexto/fuentes autorizadas;
+3) herramientas necesarias, entradas/salidas y permisos mínimos;
+4) cuándo pedir aprobación humana o detenerse;
+5) riesgos, casos de error y plan de pruebas.
+
+No inventes capacidades, accesos ni resultados. Separa hechos, supuestos y preguntas pendientes.</textarea>
+                    </article>
+                    <article class="prompt-card">
+                        <div class="mb-3 flex items-center justify-between gap-3">
+                            <h3 class="font-bold text-slate-100">2. Implementar con seguridad</h3>
+                            <button type="button" class="prompt-copy" data-copy-target="prompt-implementation"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar</button>
+                        </div>
+                        <textarea id="prompt-implementation" class="prompt-text" readonly>Implementa [función] para el agente en [lenguaje/framework] dentro de este proyecto.
+
+Primero inspecciona la estructura existente y resume el plan. Sigue los patrones actuales. Valida entradas y salidas, maneja errores explícitamente y aplica mínimo privilegio. No agregues secretos ni ejecutes operaciones externas o destructivas.
+
+Incluye pruebas para el caso normal, límites, entradas inválidas y fallos de dependencias. Al terminar, indica los archivos cambiados, cómo ejecutar las pruebas y cualquier supuesto o riesgo pendiente.</textarea>
+                    </article>
+                    <article class="prompt-card">
+                        <div class="mb-3 flex items-center justify-between gap-3">
+                            <h3 class="font-bold text-slate-100">3. Evaluar antes de producción</h3>
+                            <button type="button" class="prompt-copy" data-copy-target="prompt-evaluation"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar</button>
+                        </div>
+                        <textarea id="prompt-evaluation" class="prompt-text" readonly>Crea un plan de evaluación para este agente: [descripción del agente].
+
+Define un conjunto de casos representativos con entradas y resultados esperados: solicitudes normales, ambiguas, fuera de alcance, intentos de obtener datos no autorizados, fallos de herramientas y necesidad de aprobación. Propón métricas de calidad, finalización, latencia y coste.
+
+No declares el agente listo solo por pasar ejemplos ideales. Indica umbrales de aceptación, cómo registrar resultados sin exponer datos sensibles y qué debe bloquear un lanzamiento.</textarea>
+                    </article>
+                    <article class="prompt-card">
+                        <div class="mb-3 flex items-center justify-between gap-3">
+                            <h3 class="font-bold text-slate-100">4. Preparar despliegue en Cloud Run</h3>
+                            <button type="button" class="prompt-copy" data-copy-target="prompt-deployment"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar</button>
+                        </div>
+                        <textarea id="prompt-deployment" class="prompt-text" readonly>Prepara un plan revisable para desplegar [servicio] en Google Cloud Run dentro del proyecto [ID de proyecto] y región [región].
+
+Inspecciona el proyecto y sus instrucciones primero. Enumera requisitos, Dockerfile/configuración, cuenta de servicio con permisos mínimos, gestión de secretos mediante Secret Manager, variables de entorno no sensibles, health checks, límites de recursos, logging, monitoreo, coste y rollback.
+
+Entrega comandos como propuesta, explica cada uno y marca los valores que debo completar. No ejecutes comandos, no publiques tráfico ni modifiques recursos sin mi aprobación explícita. Nunca pongas claves en el código.</textarea>
+                    </article>
+                </div>
+                <p id="prompt-copy-status" class="copy-status mt-3 text-sm text-slate-400" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <section class="learning-section" aria-labelledby="code-lab-title">
+            <div class="learning-panel">
+                <div class="mb-5 flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[.18em] text-yellow-400">Laboratorio local</p>
+                        <h2 id="code-lab-title" class="mt-1 text-2xl font-black text-white">Preparar un agente con Google ADK</h2>
+                        <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slate-400">Python es una opción común para crear agentes con Google ADK. PowerShell sirve para preparar el entorno y lanzarlo en Windows. El código de este panel es una guía copiable; esta página no lo ejecuta.</p>
+                    </div>
+                </div>
+                <div class="code-lab">
+                    <div class="code-lab-toolbar">
+                        <div class="flex items-center gap-2" role="tablist" aria-label="Lenguaje de ejemplo">
+                            <button type="button" class="code-tab" id="python-tab" role="tab" aria-selected="true" aria-controls="agent-code">Python</button>
+                            <button type="button" class="code-tab" id="powershell-tab" role="tab" aria-selected="false" aria-controls="agent-code">PowerShell</button>
+                        </div>
+                        <button type="button" id="copy-code" class="code-action"><i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar código</button>
+                    </div>
+                    <pre class="code-output" id="agent-code" role="tabpanel" aria-labelledby="python-tab" tabindex="0"><code id="agent-code-content"></code></pre>
+                    <p class="code-note" id="code-instructions"></p>
+                </div>
+                <p id="code-copy-status" class="copy-status mt-2 text-sm text-slate-400" role="status" aria-live="polite"></p>
+                <div class="mt-4 rounded-xl border border-yellow-500/30 bg-yellow-500/5 p-4 text-sm leading-relaxed text-slate-300">
+                    <strong class="text-yellow-400">Antes de ejecutar:</strong> usa un entorno virtual, configura tu clave en una variable de entorno local, no la escribas en el archivo ni la subas a GitHub. Revisa los comandos y permisos para tu proyecto y tus costos de Google Cloud.
+                </div>
+            </div>
+        </section>
+
+        <section class="learning-section" aria-labelledby="vocabulary-title">
+            <div class="learning-panel">
+                <p class="text-xs font-bold uppercase tracking-[.18em] text-blue-400">Glosario esencial</p>
+                <h2 id="vocabulary-title" class="mt-1 text-2xl font-black text-white">Vocabulario de agentes</h2>
+                <p class="mt-2 mb-5 text-sm leading-relaxed text-slate-400">Conceptos clave para conversar sobre diseño, integración y operación de sistemas agénticos.</p>
+                <dl class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="vocab-card"><dt>Agente</dt><dd class="mt-1 text-sm leading-relaxed">Sistema que interpreta un objetivo, decide pasos y puede usar herramientas para actuar dentro de límites definidos.</dd></div>
+                    <div class="vocab-card"><dt>Tool calling</dt><dd class="mt-1 text-sm leading-relaxed">Mecanismo por el que el modelo propone una llamada estructurada y la aplicación valida y ejecuta la herramienta.</dd></div>
+                    <div class="vocab-card"><dt>Orquestación</dt><dd class="mt-1 text-sm leading-relaxed">Coordinación del modelo, contexto, herramientas y estado para completar un flujo de trabajo de principio a fin.</dd></div>
+                    <div class="vocab-card"><dt>Grounding</dt><dd class="mt-1 text-sm leading-relaxed">Fundamentar una respuesta con fuentes concretas y pertinentes, en vez de depender solo del conocimiento general del modelo.</dd></div>
+                    <div class="vocab-card"><dt>RAG</dt><dd class="mt-1 text-sm leading-relaxed">Generación aumentada por recuperación: busca información autorizada y relevante, y la aporta como contexto antes de responder.</dd></div>
+                    <div class="vocab-card"><dt>MCP</dt><dd class="mt-1 text-sm leading-relaxed">Protocolo abierto que estandariza cómo los clientes descubren y utilizan herramientas y recursos de servidores compatibles.</dd></div>
+                    <div class="vocab-card"><dt>Skill</dt><dd class="mt-1 text-sm leading-relaxed">Paquete reutilizable de instrucciones, conocimiento y pasos para realizar una tarea especializada de manera consistente.</dd></div>
+                    <div class="vocab-card"><dt>Mínimo privilegio</dt><dd class="mt-1 text-sm leading-relaxed">Principio de otorgar a cada usuario o herramienta únicamente el acceso necesario para su función.</dd></div>
+                    <div class="vocab-card"><dt>Human-in-the-loop</dt><dd class="mt-1 text-sm leading-relaxed">Punto de revisión donde una persona valida o autoriza una decisión antes de que el agente continúe.</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="learning-section" aria-labelledby="quiz-title">
+            <div class="learning-panel">
+                <p class="text-xs font-bold uppercase tracking-[.18em] text-green-400">Comprueba lo aprendido</p>
+                <h2 id="quiz-title" class="mt-1 text-2xl font-black text-white">Reto de agentes</h2>
+                <p class="mt-2 mb-5 text-sm leading-relaxed text-slate-400">Responde las cinco preguntas: cada acierto mueve tu ficha una casilla. Si fallas, puedes intentarlo otra vez.</p>
+                <form id="agent-quiz" class="quiz-game-layout">
+                    <div class="quiz-question-list space-y-4">
+                    <fieldset class="quiz-question" data-answer="b">
+                        <legend>1. ¿Qué distingue principalmente a un agente de un chatbot básico?</legend>
+                        <div class="mt-3 space-y-1">
+                            <label class="quiz-option"><input type="radio" name="q1" value="a"><span>Siempre utiliza el modelo más grande disponible.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q1" value="b"><span>Puede planear pasos y utilizar herramientas para alcanzar un objetivo.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q1" value="c"><span>No necesita instrucciones ni supervisión.</span></label>
+                        </div>
+                        <p class="quiz-feedback mt-2 text-sm" aria-live="polite"></p>
+                        <button type="button" class="quiz-check-answer mt-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Comprobar</button>
+                    </fieldset>
+                    <fieldset class="quiz-question" data-answer="a">
+                        <legend>2. ¿Para qué se usa RAG?</legend>
+                        <div class="mt-3 space-y-1">
+                            <label class="quiz-option"><input type="radio" name="q2" value="a"><span>Para recuperar información relevante que aporte contexto a la respuesta.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q2" value="b"><span>Para dar permisos de administrador al modelo.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q2" value="c"><span>Para evitar validar las respuestas.</span></label>
+                        </div>
+                        <p class="quiz-feedback mt-2 text-sm" aria-live="polite"></p>
+                        <button type="button" class="quiz-check-answer mt-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Comprobar</button>
+                    </fieldset>
+                    <fieldset class="quiz-question" data-answer="c">
+                        <legend>3. ¿Qué principio debe guiar los permisos de las herramientas?</legend>
+                        <div class="mt-3 space-y-1">
+                            <label class="quiz-option"><input type="radio" name="q3" value="a"><span>Compartir una credencial con todos los agentes.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q3" value="b"><span>Permitir cualquier acción para evitar interrupciones.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q3" value="c"><span>Conceder el mínimo acceso necesario para cada tarea.</span></label>
+                        </div>
+                        <p class="quiz-feedback mt-2 text-sm" aria-live="polite"></p>
+                        <button type="button" class="quiz-check-answer mt-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Comprobar</button>
+                    </fieldset>
+                    <fieldset class="quiz-question" data-answer="b">
+                        <legend>4. ¿Cuándo conviene pedir aprobación humana?</legend>
+                        <div class="mt-3 space-y-1">
+                            <label class="quiz-option"><input type="radio" name="q4" value="a"><span>Antes de mostrar cualquier respuesta informativa.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q4" value="b"><span>Antes de acciones sensibles, irreversibles o con impacto externo.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q4" value="c"><span>Nunca; un agente debe ser totalmente autónomo.</span></label>
+                        </div>
+                        <p class="quiz-feedback mt-2 text-sm" aria-live="polite"></p>
+                        <button type="button" class="quiz-check-answer mt-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Comprobar</button>
+                    </fieldset>
+                    <fieldset class="quiz-question" data-answer="a">
+                        <legend>5. ¿Qué aporta una evaluación continua?</legend>
+                        <div class="mt-3 space-y-1">
+                            <label class="quiz-option"><input type="radio" name="q5" value="a"><span>Permite medir calidad, errores, latencia y coste para mejorar el sistema.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q5" value="b"><span>Garantiza que el modelo nunca se equivoque.</span></label>
+                            <label class="quiz-option"><input type="radio" name="q5" value="c"><span>Elimina la necesidad de observar el uso de herramientas.</span></label>
+                        </div>
+                        <p class="quiz-feedback mt-2 text-sm" aria-live="polite"></p>
+                        <button type="button" class="quiz-check-answer mt-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Comprobar</button>
+                    </fieldset>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <p id="quiz-score" class="text-sm text-slate-400" aria-live="polite"></p>
+                        <button type="button" id="quiz-reset" class="rounded-lg border border-slate-600 px-4 py-2 text-sm font-bold text-slate-300 transition-colors hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400" hidden>Volver a jugar</button>
+                    </div>
+                    </div>
+                    <aside class="parks-board-card" aria-labelledby="parks-board-title">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 id="parks-board-title" class="font-black text-white">Parqués exprés</h3>
+                            <span class="rounded-full bg-blue-500/15 px-2.5 py-1 text-xs font-bold text-blue-300">5 casillas</span>
+                        </div>
+                        <p class="mt-1 text-xs leading-relaxed text-slate-400">Acierta para avanzar. ¡Llega a la meta!</p>
+                        <svg class="parks-board" viewBox="0 0 280 280" role="img" aria-labelledby="parks-board-title parks-status">
+                            <rect x="8" y="8" width="264" height="264" rx="24" fill="#111827" stroke="#64748b" stroke-width="3"></rect>
+                            <rect x="18" y="18" width="92" height="92" rx="16" fill="#4285f4" opacity=".8"></rect>
+                            <rect x="170" y="18" width="92" height="92" rx="16" fill="#ea4335" opacity=".8"></rect>
+                            <rect x="18" y="170" width="92" height="92" rx="16" fill="#34a853" opacity=".8"></rect>
+                            <rect x="170" y="170" width="92" height="92" rx="16" fill="#fbbc05" opacity=".85"></rect>
+                            <path class="parks-route" d="M40 140 H85 V85 H140 H195 L140 140"></path>
+                            <circle class="parks-space" cx="85" cy="140" r="13"></circle>
+                            <circle class="parks-space" cx="85" cy="85" r="13"></circle>
+                            <circle class="parks-space" cx="140" cy="85" r="13"></circle>
+                            <circle class="parks-space" cx="195" cy="85" r="13"></circle>
+                            <circle class="parks-space" cx="140" cy="140" r="28"></circle>
+                            <path d="m140 122 5.5 11.2 12.4 1.8-9 8.8 2.1 12.4-11-5.8-11 5.8 2.1-12.4-9-8.8 12.4-1.8z" fill="#fbbc05"></path>
+                            <text x="140" y="177" fill="#fff" font-size="9" font-weight="800" text-anchor="middle">META</text>
+                            <g id="parks-token" class="parks-token" transform="translate(40 140)" aria-hidden="true">
+                                <circle r="12" fill="#fff"></circle>
+                                <circle r="9" fill="#4285f4"></circle>
+                                <path d="M0-5 1.6-1.6 5 0 1.6 1.6 0 5-1.6 1.6-5 0-1.6-1.6z" fill="#fff"></path>
+                            </g>
+                        </svg>
+                        <p id="parks-status" class="text-center text-sm font-bold text-slate-200" aria-live="polite">Salida · 0 de 5 aciertos</p>
+                    </aside>
+                </form>
+                <div id="quiz-award" class="quiz-award mt-5" role="status" hidden>
+                    <svg class="award-medal" viewBox="0 0 80 80" role="img" aria-label="Insignia original de Agente responsable">
+                        <defs>
+                            <linearGradient id="award-ribbon" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#4285f4"></stop><stop offset="1" stop-color="#34a853"></stop></linearGradient>
+                            <radialGradient id="award-gold" cx=".3" cy=".2"><stop stop-color="#fff1a8"></stop><stop offset=".55" stop-color="#fbbc05"></stop><stop offset="1" stop-color="#d28b00"></stop></radialGradient>
+                        </defs>
+                        <path d="m23 47-5 27 22-12 22 12-5-27" fill="url(#award-ribbon)" stroke="#fff" stroke-width="2" stroke-linejoin="round"></path>
+                        <circle cx="40" cy="34" r="27" fill="url(#award-gold)" stroke="#fff" stroke-width="3"></circle>
+                        <circle cx="40" cy="34" r="21" fill="none" stroke="#fff" stroke-width="2" opacity=".8"></circle>
+                        <path d="m40 18 5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" fill="#fff"></path>
+                    </svg>
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-[.16em] text-yellow-500">¡Reto completado!</p>
+                        <h3 class="mt-1 text-lg font-black">Insignia: Agente responsable</h3>
+                        <p class="mt-1 text-sm">Respondiste correctamente las cinco preguntas. ¡Buen trabajo!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lienzo de la Infografía -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+                <div id="infographic-area" role="tabpanel" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-slate-900 p-2 rounded-2xl">
             
             <!-- Columna Izquierda: Anatomía Dinámica -->
             <section class="lg:col-span-5 bg-gradient-to-b from-slate-950 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
@@ -288,6 +805,15 @@
                 ],
                 rightTitle: "Arquitectura de agentes autónomos",
                 rightSubtitle: "Componentes para operar con control, trazabilidad y supervisión.",
+                reasoning: {
+                    scenario: "Ejemplo: una persona pide investigar un problema y preparar un resumen con fuentes.",
+                    steps: [
+                        { title: "Entender el objetivo", text: "Identifica el resultado esperado, las restricciones y qué información falta." },
+                        { title: "Planear la tarea", text: "Divide el trabajo en pasos y decide qué fuentes o herramientas autorizadas necesita." },
+                        { title: "Actuar con límites", text: "Consulta datos con permisos acotados; solicita aprobación antes de una acción sensible." },
+                        { title: "Verificar y responder", text: "Comprueba evidencias, señala incertidumbres y continúa o pide ayuda si no alcanza el objetivo." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-network-wired", name: "Orquestación multiagente", desc: "Agentes especializados colaboran mediante responsabilidades y contratos claros.", detail: "Define un agente coordinador, limita las herramientas de cada rol y registra las transferencias entre agentes." },
                     { icon: "fa-user-check", name: "Supervisión humana", desc: "Las decisiones sensibles se detienen para revisión y autorización.", detail: "Solicita aprobación antes de operaciones irreversibles, cambios de permisos o acciones con impacto externo." },
@@ -307,6 +833,15 @@
                 ],
                 rightTitle: "Diseña skills útiles y fiables",
                 rightSubtitle: "Capacidades enfocadas, reutilizables y fáciles de evaluar.",
+                reasoning: {
+                    scenario: "Ejemplo: preparar un informe semanal siguiendo un procedimiento que el equipo ya aprobó.",
+                    steps: [
+                        { title: "Reconocer la tarea", text: "Compara la solicitud con el alcance del skill y confirma que aplica." },
+                        { title: "Seguir el procedimiento", text: "Carga instrucciones y referencias necesarias; divide el trabajo en pasos verificables." },
+                        { title: "Usar herramientas permitidas", text: "Consulta únicamente las fuentes autorizadas; el skill no amplía permisos." },
+                        { title: "Revisar el resultado", text: "Contrasta el informe con los criterios de calidad y pide revisión si falta información." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-bullseye", name: "Alcance claro", desc: "Define qué resuelve el skill y cuándo debe activarse.", detail: "Incluye ejemplos de solicitudes adecuadas y situaciones en las que el agente debe pedir aclaraciones o derivar la tarea." },
                     { icon: "fa-book", name: "Contexto y referencias", desc: "Añade solo el conocimiento necesario para completar el trabajo.", detail: "Organiza la información para que sea fácil de consultar y señala qué fuentes deben considerarse prioritarias." },
@@ -325,6 +860,15 @@
                 ],
                 rightTitle: "Pilares del motor multimodal",
                 rightSubtitle: "Diseño de experiencias multimodales con respuestas útiles y verificables.",
+                reasoning: {
+                    scenario: "Ejemplo: responder una pregunta sobre una imagen y un documento de referencia.",
+                    steps: [
+                        { title: "Interpretar entradas", text: "Extrae señales pertinentes de la imagen, el texto o el audio y reconoce límites de calidad." },
+                        { title: "Buscar contexto", text: "Recupera fragmentos relevantes de fuentes autorizadas para fundamentar la respuesta." },
+                        { title: "Construir una respuesta", text: "Combina las evidencias sin completar con suposiciones los datos que no aparecen." },
+                        { title: "Validar y citar", text: "Comprueba formato y coherencia; muestra las fuentes o deriva a una revisión humana." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-bolt", name: "Selección de modelos", desc: "Equilibra calidad, latencia y coste según cada tarea.", detail: "Evalúa modelos con ejemplos representativos y selecciona el más ligero que cumpla los requisitos." },
                     { icon: "fa-shield-halved", name: "Protección de contenido", desc: "Aplica controles de seguridad a las entradas y salidas.", detail: "Define políticas para datos sensibles, contenido no permitido y revisión de resultados de alto impacto." },
@@ -343,6 +887,15 @@
                 ],
                 rightTitle: "Gobernanza desde el diseño",
                 rightSubtitle: "Controles que protegen los datos sin perder trazabilidad operativa.",
+                reasoning: {
+                    scenario: "Ejemplo: una solicitud pide consultar un registro de negocio mediante una conexión MCP.",
+                    steps: [
+                        { title: "Identificar la solicitud", text: "Determina qué dato o herramienta necesita la tarea y para qué finalidad." },
+                        { title: "Comprobar acceso", text: "Valida identidad, ámbito y política antes de llamar al servidor MCP." },
+                        { title: "Ejecutar lo autorizado", text: "Invoca solo la herramienta necesaria y minimiza los datos intercambiados." },
+                        { title: "Dejar trazabilidad", text: "Registra decisión, recurso consultado y resultado; bloquea y explica lo no autorizado." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-user-lock", name: "Acceso de mínimo privilegio", desc: "Cada herramienta recibe solo los permisos imprescindibles.", detail: "Separa credenciales por servicio, limita los ámbitos de acceso y revoca permisos que ya no se necesitan." },
                     { icon: "fa-filter-circle-dollar", name: "Límites de datos", desc: "Reduce la exposición de información personal o confidencial.", detail: "Filtra, enmascara o excluye datos antes de enviarlos a modelos o herramientas externas." },
@@ -361,6 +914,15 @@
                 ],
                 rightTitle: "Despliegue listo para producción",
                 rightSubtitle: "Buenas prácticas para servicios de IA fiables y controlables.",
+                reasoning: {
+                    scenario: "Ejemplo: publicar una nueva versión de un agente en Cloud Run.",
+                    steps: [
+                        { title: "Preparar versión", text: "Empaqueta código y dependencias en una imagen identificable y reproducible." },
+                        { title: "Revisar configuración", text: "Comprueba identidad de servicio, secretos, recursos y límites antes del despliegue." },
+                        { title: "Desplegar gradualmente", text: "Ejecuta verificaciones y aumenta el tráfico solo si la versión responde bien." },
+                        { title: "Observar o revertir", text: "Supervisa errores, latencia y coste; revierte si las métricas salen de los umbrales." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-cloud-arrow-up", name: "Entrega continua", desc: "Publica versiones inmutables y conserva la posibilidad de revertir.", detail: "Automatiza pruebas y despliega gradualmente antes de dirigir todo el tráfico a una versión." },
                     { icon: "fa-sliders", name: "Recursos y concurrencia", desc: "Ajusta CPU, memoria y solicitudes simultáneas al perfil real de carga.", detail: "Prueba con cargas representativas y configura límites para proteger dependencias y presupuesto." },
@@ -379,6 +941,15 @@
                 ],
                 rightTitle: "Experiencia de IA en el navegador",
                 rightSubtitle: "Rendimiento, privacidad y compatibilidad en equilibrio.",
+                reasoning: {
+                    scenario: "Ejemplo: resumir un documento desde una función de IA en el navegador.",
+                    steps: [
+                        { title: "Evaluar el dispositivo", text: "Comprueba compatibilidad, memoria y capacidad antes de cargar un modelo local." },
+                        { title: "Elegir el modo", text: "Prefiere procesamiento local si es viable; explica cualquier alternativa remota." },
+                        { title: "Procesar con cuidado", text: "Minimiza los datos, permite cancelar y evita bloquear la interfaz." },
+                        { title: "Comprobar la salida", text: "Valida que el resumen responda a la solicitud y comunica límites o fallos." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-gauge-high", name: "Carga bajo demanda", desc: "Descarga modelos solo cuando la función se necesita.", detail: "Informa del tamaño de descarga y permite cancelar o reintentar en conexiones limitadas." },
                     { icon: "fa-memory", name: "Gestión de recursos", desc: "Adapta el tamaño del modelo a la memoria y capacidad del dispositivo.", detail: "Libera recursos al cerrar la experiencia y evita bloquear la interfaz durante la inferencia." },
@@ -397,6 +968,15 @@
                 ],
                 rightTitle: "Aplicaciones móviles fiables",
                 rightSubtitle: "Patrones para integrar inteligencia sin sacrificar usabilidad ni control.",
+                reasoning: {
+                    scenario: "Ejemplo: ayudar a completar una tarea desde una app móvil con conectividad variable.",
+                    steps: [
+                        { title: "Entender el contexto", text: "Considera la solicitud, el estado de red, la batería y los recursos disponibles." },
+                        { title: "Elegir dónde procesar", text: "Resuelve localmente lo adecuado; usa un servicio remoto solo cuando haga falta." },
+                        { title: "Manejar interrupciones", text: "Permite cancelar, reintentar de forma controlada y conservar estados pendientes." },
+                        { title: "Entregar con claridad", text: "Verifica el resultado, protege datos del dispositivo y explica qué se procesó." }
+                    ]
+                },
                 rightCards: [
                     { icon: "fa-code-branch", name: "SDKs y arquitectura", desc: "Aísla la integración de IA detrás de servicios de aplicación claros.", detail: "Mantén los detalles del proveedor fuera de la interfaz y facilita sustituir o probar implementaciones." },
                     { icon: "fa-wifi", name: "Conectividad resiliente", desc: "Trata los fallos de red y la disponibilidad parcial como estados normales.", detail: "Ofrece reintentos controlados, cancelación y mensajes que indiquen si una tarea quedó pendiente." },
@@ -415,7 +995,23 @@
         const rightTitle = document.getElementById("right-title");
         const rightSubtitle = document.getElementById("right-subtitle");
         const rightGrid = document.getElementById("right-grid");
+        const reasoningTitle = document.getElementById("reasoning-title");
+        const reasoningScenario = document.getElementById("reasoning-scenario");
+        const reasoningSteps = document.getElementById("reasoning-steps");
+        const roadmapProgress = document.getElementById("roadmap-progress");
         let activeModule = 0;
+        let transitioningModule = null;
+        let roadmapFlashTimeout;
+        const visitedModules = new Set([0]);
+        const roadmapIcons = [
+            "fa-brain",
+            "fa-wand-magic-sparkles",
+            "fa-photo-film",
+            "fa-plug",
+            "fa-cloud-arrow-up",
+            "fa-globe",
+            "fa-mobile-screen-button"
+        ];
 
         function createIcon(iconName, classes = "") {
             const icon = document.createElement("i");
@@ -426,22 +1022,33 @@
 
         function renderNavigation() {
             nav.replaceChildren();
+            const exploredPercentage = Math.round((visitedModules.size / modulesData.length) * 100);
+            roadmapProgress.textContent = `${String(visitedModules.size).padStart(2, "0")} / ${String(modulesData.length).padStart(2, "0")} etapas · ${exploredPercentage}% explorado`;
+            roadmapProgress.setAttribute("aria-label", `${visitedModules.size} de ${modulesData.length} etapas exploradas, ${exploredPercentage} por ciento`);
             modulesData.forEach((module, index) => {
                 const button = document.createElement("button");
                 button.type = "button";
                 button.role = "tab";
                 button.id = `module-tab-${index}`;
-                button.setAttribute("aria-controls", "infographic-area");
+                button.setAttribute("aria-controls", "reasoning-engine infographic-area");
                 button.setAttribute("aria-selected", String(index === activeModule));
+                button.setAttribute("aria-label", `Etapa ${index + 1}: ${module.navLabel}${index === activeModule ? ", en curso" : visitedModules.has(index) ? ", visitada" : ", siguiente"}`);
                 button.tabIndex = index === activeModule ? 0 : -1;
-                button.className = index === activeModule
-                    ? "flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white shadow-lg shadow-blue-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-                    : "flex items-center gap-2 px-4 py-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400";
-                const navIcons = ["fa-wand-magic-sparkles", "fa-graduation-cap", "fa-shapes", "fa-plug", "fa-cloud", "fa-globe", "fa-mobile-screen-button"];
-                button.append(createIcon(navIcons[index], `nav-icon brand-tone-${["blue", "red", "yellow", "green"][index % 4]}`));
+                button.className = `roadmap-step${index === activeModule ? " is-active" : ""}${visitedModules.has(index) && index !== activeModule ? " is-complete" : ""}${index === transitioningModule ? " is-transitioning" : ""}`;
+                button.title = `${index + 1}. ${module.navLabel}`;
+                const node = document.createElement("span");
+                node.className = "roadmap-node";
+                node.setAttribute("aria-hidden", "true");
+                node.append(createIcon(roadmapIcons[index] ?? "fa-circle-nodes"));
+                button.append(node);
                 const label = document.createElement("span");
+                label.className = "roadmap-label";
                 label.textContent = module.navLabel;
                 button.append(label);
+                const state = document.createElement("span");
+                state.className = "roadmap-state";
+                state.textContent = index === activeModule ? "En curso" : visitedModules.has(index) ? "Visitada" : "Siguiente";
+                button.append(state);
                 button.addEventListener("click", () => selectModule(index));
                 button.addEventListener("keydown", handleTabKeydown);
                 nav.append(button);
@@ -456,6 +1063,26 @@
             leftDesc.textContent = module.leftDesc;
             rightTitle.textContent = module.rightTitle;
             rightSubtitle.textContent = module.rightSubtitle;
+            reasoningTitle.textContent = `Motor de razonamiento · ${module.navLabel}`;
+            reasoningScenario.textContent = module.reasoning.scenario;
+            reasoningSteps.replaceChildren();
+            module.reasoning.steps.forEach((step, index) => {
+                const item = document.createElement("li");
+                item.className = "reasoning-step";
+                const topLine = document.createElement("div");
+                topLine.className = "flex items-center justify-between gap-2";
+                const number = document.createElement("span");
+                number.className = "reasoning-step-number";
+                number.textContent = String(index + 1).padStart(2, "0");
+                const icon = createIcon(["fa-eye", "fa-diagram-project", "fa-screwdriver-wrench", "fa-circle-check"][index], "text-sm text-blue-300");
+                topLine.append(number, icon);
+                const heading = document.createElement("h4");
+                heading.textContent = step.title;
+                const description = document.createElement("p");
+                description.textContent = step.text;
+                item.append(topLine, heading, description);
+                reasoningSteps.append(item);
+            });
 
             leftList.replaceChildren();
             module.leftItems.forEach((item, index) => {
@@ -529,8 +1156,17 @@
 
         function selectModule(index) {
             if (!Number.isInteger(index) || index < 0 || index >= modulesData.length) return;
+            if (index === activeModule) return;
+            visitedModules.add(activeModule);
+            visitedModules.add(index);
             activeModule = index;
+            transitioningModule = index;
             renderModule();
+            transitioningModule = null;
+            window.clearTimeout(roadmapFlashTimeout);
+            roadmapFlashTimeout = window.setTimeout(() => {
+                document.getElementById(`module-tab-${index}`)?.classList.remove("is-transitioning");
+            }, 800);
         }
 
         function handleTabKeydown(event) {
@@ -547,13 +1183,183 @@
         }
 
         const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        function updateThemeToggle(isLightTheme) {
+            const label = `Cambiar al modo ${isLightTheme ? "noche" : "día"}`;
+            themeToggle.setAttribute("aria-pressed", String(isLightTheme));
+            themeToggle.setAttribute("aria-label", label);
+            themeToggle.title = label;
+            themeIcon.className = `fa-solid ${isLightTheme ? "fa-moon text-indigo-300 drop-shadow-[0_0_8px_rgba(165,180,252,0.6)]" : "fa-sun text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"}`;
+        }
         themeToggle.addEventListener("click", () => {
             const isLightTheme = document.body.dataset.theme !== "light";
             document.body.dataset.theme = isLightTheme ? "light" : "dark";
-            themeToggle.setAttribute("aria-pressed", String(isLightTheme));
-            themeToggle.setAttribute("aria-label", `Cambiar al modo ${isLightTheme ? "noche" : "día"}`);
+            updateThemeToggle(isLightTheme);
         });
         document.getElementById("print-report").addEventListener("click", () => window.print());
+        async function copyToClipboard(text, statusElement, successMessage) {
+            try {
+                await navigator.clipboard.writeText(text);
+                statusElement.textContent = successMessage;
+                statusElement.className = "copy-status mt-3 text-sm text-green-500";
+            } catch (error) {
+                statusElement.textContent = "No se pudo copiar. Selecciona el texto y cópialo manualmente.";
+                statusElement.className = "copy-status mt-3 text-sm text-red-500";
+                console.error("Clipboard copy failed:", error);
+            }
+        }
+        document.querySelectorAll(".prompt-copy").forEach((button) => {
+            button.addEventListener("click", () => {
+                const prompt = document.getElementById(button.dataset.copyTarget);
+                copyToClipboard(prompt.value, document.getElementById("prompt-copy-status"), "Prompt copiado.");
+            });
+        });
+        const codeSamples = {
+            python: {
+                tab: document.getElementById("python-tab"),
+                code: `from google.adk.agents import Agent
+
+root_agent = Agent(
+    name="asistente_documental",
+    model="gemini-2.5-flash",
+    description="Responde preguntas sobre documentación autorizada.",
+    instruction=(
+        "Responde en español, de forma clara y breve. "
+        "Si falta información, dilo y pide contexto. "
+        "No inventes fuentes ni afirmes haber ejecutado acciones."
+    ),
+)`,
+                instructions: "Guarda este archivo como my_agent/agent.py. En el entorno virtual instala google-adk, configura GOOGLE_API_KEY en la sesión y ejecuta: adk run my_agent"
+            },
+            powershell: {
+                tab: document.getElementById("powershell-tab"),
+                code: `# Crear y activar un entorno virtual de Python
+python -m venv .venv
+.\\.venv\\Scripts\\Activate.ps1
+
+# Instalar Google ADK
+python -m pip install --upgrade pip
+python -m pip install google-adk
+
+# Configurar la clave solo en esta sesión de PowerShell
+$env:GOOGLE_API_KEY = "TU_API_KEY"
+
+# Ejecutar el agente guardado en my_agent/agent.py
+adk run my_agent`,
+                instructions: "PowerShell prepara y ejecuta el proyecto; la lógica del agente se define en Python. Reemplaza TU_API_KEY localmente y nunca la guardes en el repositorio."
+            }
+        };
+        const codeContent = document.getElementById("agent-code-content");
+        const codePanel = document.getElementById("agent-code");
+        const codeInstructions = document.getElementById("code-instructions");
+        let activeCodeLanguage = "python";
+        function selectCodeLanguage(language) {
+            const sample = codeSamples[language];
+            if (!sample) return;
+            activeCodeLanguage = language;
+            codeContent.textContent = sample.code;
+            codeInstructions.textContent = sample.instructions;
+            codePanel.setAttribute("aria-labelledby", sample.tab.id);
+            Object.entries(codeSamples).forEach(([name, item]) => {
+                item.tab.setAttribute("aria-selected", String(name === language));
+                item.tab.tabIndex = name === language ? 0 : -1;
+            });
+        }
+        Object.entries(codeSamples).forEach(([language, sample], index, entries) => {
+            sample.tab.addEventListener("click", () => selectCodeLanguage(language));
+            sample.tab.addEventListener("keydown", (event) => {
+                if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                event.preventDefault();
+                const nextIndex = (index + (event.key === "ArrowRight" ? 1 : -1) + entries.length) % entries.length;
+                const nextLanguage = entries[nextIndex][0];
+                selectCodeLanguage(nextLanguage);
+                codeSamples[nextLanguage].tab.focus();
+            });
+        });
+        document.getElementById("copy-code").addEventListener("click", () => {
+            copyToClipboard(codeSamples[activeCodeLanguage].code, document.getElementById("code-copy-status"), "Código copiado.");
+        });
+        selectCodeLanguage(activeCodeLanguage);
+        const agentQuiz = document.getElementById("agent-quiz");
+        const quizQuestions = [...agentQuiz.querySelectorAll(".quiz-question")];
+        const parksToken = document.getElementById("parks-token");
+        const parksStatus = document.getElementById("parks-status");
+        const quizScore = document.getElementById("quiz-score");
+        const quizAward = document.getElementById("quiz-award");
+        const quizReset = document.getElementById("quiz-reset");
+        const parksSpaces = [...agentQuiz.querySelectorAll(".parks-space")];
+        const parksRoute = [
+            [40, 140],
+            [85, 140],
+            [85, 85],
+            [140, 85],
+            [195, 85],
+            [140, 140]
+        ];
+        let correctAnswers = 0;
+
+        function updateParksProgress() {
+            const position = parksRoute[correctAnswers];
+            parksToken.setAttribute("transform", `translate(${position[0]} ${position[1]})`);
+            parksSpaces.forEach((space, index) => {
+                space.classList.toggle("is-reached", index < correctAnswers);
+            });
+            parksStatus.textContent = correctAnswers === quizQuestions.length
+                ? `¡Llegaste a la meta! ${correctAnswers} de ${quizQuestions.length} aciertos`
+                : `${correctAnswers === 0 ? "Salida" : `Casilla ${correctAnswers}`} · ${correctAnswers} de ${quizQuestions.length} aciertos`;
+            quizScore.textContent = `${correctAnswers} de ${quizQuestions.length} aciertos`;
+            quizAward.hidden = correctAnswers !== quizQuestions.length;
+            quizReset.hidden = correctAnswers !== quizQuestions.length;
+        }
+
+        agentQuiz.addEventListener("submit", (event) => event.preventDefault());
+        quizQuestions.forEach((question) => {
+            const checkButton = question.querySelector(".quiz-check-answer");
+            const feedback = question.querySelector(".quiz-feedback");
+            checkButton.addEventListener("click", () => {
+                const selected = question.querySelector("input:checked");
+                if (!selected) {
+                    feedback.textContent = "Selecciona una respuesta antes de comprobar.";
+                    feedback.className = "quiz-feedback mt-2 text-sm text-amber-500";
+                    return;
+                }
+
+                if (selected.value !== question.dataset.answer) {
+                    question.dataset.result = "incorrect";
+                    feedback.textContent = "Aún no. Revisa las opciones e inténtalo otra vez; tu ficha espera.";
+                    feedback.className = "quiz-feedback mt-2 text-sm text-red-500";
+                    return;
+                }
+
+                question.dataset.result = "correct";
+                question.querySelectorAll("input").forEach((input) => {
+                    input.disabled = true;
+                });
+                checkButton.disabled = true;
+                checkButton.textContent = "¡Correcto!";
+                feedback.textContent = "¡Correcto! Tu ficha avanzó una casilla.";
+                feedback.className = "quiz-feedback mt-2 text-sm text-green-500";
+                correctAnswers += 1;
+                updateParksProgress();
+            });
+        });
+        quizReset.addEventListener("click", () => {
+            agentQuiz.reset();
+            quizQuestions.forEach((question) => {
+                question.removeAttribute("data-result");
+                question.querySelector(".quiz-feedback").textContent = "";
+                question.querySelector(".quiz-feedback").className = "quiz-feedback mt-2 text-sm";
+                question.querySelectorAll("input").forEach((input) => {
+                    input.disabled = false;
+                });
+                const checkButton = question.querySelector(".quiz-check-answer");
+                checkButton.disabled = false;
+                checkButton.textContent = "Comprobar";
+            });
+            correctAnswers = 0;
+            updateParksProgress();
+        });
+        updateParksProgress();
         renderModule();
     </script>
 </body>

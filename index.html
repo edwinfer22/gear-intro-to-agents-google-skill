@@ -63,7 +63,7 @@
         .google-corner path { fill: none; stroke-width: 8; stroke-linecap: round; }
         .google-corner-top { top: -50px; left: -50px; }
         .google-corner-bottom { right: -50px; bottom: -50px; transform: rotate(180deg); }
-        .agent-watermark { position: fixed; z-index: 3; top: 53%; left: 50%; width: clamp(240px, 36vw, 450px); transform: translate(-50%, -50%); opacity: .2; pointer-events: none; }
+        .agent-watermark { position: absolute; z-index: 1; top: 50%; right: 2rem; width: clamp(210px, 28vw, 340px); transform: translateY(-50%); opacity: .25; pointer-events: none; }
         .agent-watermark .agent-shell { fill: url(#agent-shell-gradient); stroke: #9aa0a6; stroke-width: 3; }
         .agent-watermark .agent-outline { fill: none; stroke: #9aa0a6; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
         .agent-watermark .agent-face { fill: #202124; }
@@ -74,6 +74,21 @@
         .agent-watermark .agent-accent-yellow { fill: #fbbc05; }
         .agent-watermark .agent-accent-green { fill: #34a853; }
         header, main, footer { position: relative; z-index: 2; }
+        .agent-hero { position: relative; isolation: isolate; overflow: hidden; border: 1px solid rgba(148,163,184,.2); border-radius: 2rem; background: radial-gradient(ellipse at 85% 50%, rgba(66,133,244,.18), transparent 42%), linear-gradient(120deg, #111827, #172554 55%, #111827); }
+        .agent-hero::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--google-blue) 0 25%, var(--google-red) 25% 50%, var(--google-yellow) 50% 75%, var(--google-green) 75%); }
+        .agent-hero-content { position: relative; z-index: 2; max-width: 720px; }
+        .agent-flow-step { min-width: 0; border: 1px solid rgba(148,163,184,.24); border-radius: 1rem; background: rgba(15,23,42,.66); padding: .8rem 1rem; }
+        .agent-flow-step:nth-of-type(1) i { color: var(--google-blue); }
+        .agent-flow-step:nth-of-type(2) i { color: var(--google-yellow); }
+        .agent-flow-step:nth-of-type(3) i { color: var(--google-green); }
+        .agent-flow-arrow { color: #94a3b8; }
+        body[data-theme="light"] .agent-hero { background: radial-gradient(ellipse at 88% 50%, rgba(66,133,244,.17), transparent 42%), linear-gradient(120deg, #fff, #f1f6ff 55%, #fff); border-color: var(--google-line); }
+        body[data-theme="light"] .agent-flow-step { background: rgba(255,255,255,.82); border-color: var(--google-line); }
+        body[data-theme="light"] .agent-flow-arrow { color: var(--google-muted); }
+        body[data-theme="light"] .agent-hero h2 { color: var(--google-ink) !important; }
+        body[data-theme="light"] .agent-hero p:not(.text-blue-300) { color: var(--google-muted) !important; }
+        body[data-theme="light"] .agent-flow-step span { color: #3c4043 !important; }
+        body[data-theme="light"] .agent-watermark { opacity: .15; }
         body[data-theme="dark"] { background: #0f172a !important; }
         body[data-theme="dark"] .brand-icon { background: #1e293b; }
         body[data-theme="dark"] #left-list article, body[data-theme="dark"] #right-grid article { border-color: #334155 !important; }
@@ -82,7 +97,9 @@
             .google-corner { opacity: .28; }
             .google-corner-top { top: -65px; left: -65px; }
             .google-corner-bottom { right: -65px; bottom: -65px; }
-            .agent-watermark { width: min(72vw, 300px); opacity: .14; }
+            .agent-watermark { right: -2rem; width: min(62vw, 250px); opacity: .14; }
+            .agent-hero-content { max-width: 100%; }
+            .agent-flow-step { padding: .65rem .75rem; }
         }
         @media print {
             body { background: white !important; color: #0f172a !important; }
@@ -97,7 +114,7 @@
         }
     </style>
 </head>
-<body data-theme="light" class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
+<body data-theme="dark" class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-blue-500/30">
 
     <svg class="google-corner google-corner-top" viewBox="0 0 180 180" aria-hidden="true">
         <path d="M12 150 A138 138 0 0 1 150 12" stroke="#4285f4"></path>
@@ -111,7 +128,46 @@
         <path d="M58 178 A120 120 0 0 1 178 58" stroke="#fbbc05"></path>
         <path d="M82 180 A98 98 0 0 1 180 82" stroke="#34a853"></path>
     </svg>
-    <svg class="agent-watermark" viewBox="0 0 360 400" aria-hidden="true">
+    <!-- Encabezado de Navegación Futurista -->
+    <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800" aria-label="Colores de Google">
+                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#4285f4]"></span>
+                    <span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_#ea4335]"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_10px_#fbbc05]"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_#34a853]"></span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
+                        AI Agents & Gemini Enterprise
+                        <span class="text-[10px] bg-gradient-to-r from-blue-500 via-red-500 to-green-500 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">Arquitectura, skills y despliegue de agentes autónomos</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3">
+                <button type="button" id="theme-toggle" aria-label="Cambiar al modo día" aria-pressed="false" class="bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-all flex items-center gap-3 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
+                    <i class="fa-solid fa-sun text-amber-400 text-xl drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
+                    <span>Día / Noche</span>
+                    <i class="fa-solid fa-moon text-indigo-300 text-xl drop-shadow-[0_0_8px_rgba(165,180,252,0.6)]" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="print-report" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
+                    <i class="fa-solid fa-file-arrow-down text-lg" aria-hidden="true"></i> Imprimir / Guardar PDF
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-slate-950 border-t border-slate-800/60 overflow-x-auto scrollbar-none">
+            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container" role="tablist" aria-label="Temas de la infografía">
+            </nav>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8" aria-labelledby="agent-hero-title">
+        <div class="agent-hero px-6 py-8 sm:px-10 sm:py-10">
+            <svg class="agent-watermark" viewBox="0 0 360 400" aria-hidden="true">
         <defs>
             <linearGradient id="agent-shell-gradient" x1="0" x2="1" y1="0" y2="1">
                 <stop offset="0" stop-color="#fff"></stop>
@@ -146,46 +202,30 @@
         <circle class="agent-accent-red" cx="180" cy="321" r="7"></circle>
         <circle class="agent-accent-yellow" cx="206" cy="321" r="7"></circle>
         <path class="agent-outline" d="M91 132 72 117m197 15 19-15"></path>
-    </svg>
-
-    <!-- Encabezado de Navegación Futurista -->
-    <header class="bg-slate-950/80 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="flex gap-1.5 bg-slate-900 px-3 py-2 rounded-full border border-slate-800" aria-label="Colores de Google">
-                    <span class="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#4285f4]"></span>
-                    <span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_#ea4335]"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_10px_#fbbc05]"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_#34a853]"></span>
-                </div>
-                <div>
-                    <h1 class="text-xl font-black tracking-tight text-white flex items-center gap-2">
-                        AI Agents & Gemini Enterprise 
-                        <span class="text-[10px] bg-gradient-to-r from-blue-500 via-red-500 to-green-500 text-white font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-md">GEAR Ready</span>
-                    </h1>
-                    <p class="text-xs text-slate-400 font-medium">Arquitectura, skills y despliegue de agentes autónomos</p>
+                </svg>
+                <div class="agent-hero-content">
+                    <p class="text-xs font-bold uppercase tracking-[.22em] text-blue-300">GEAR · Agent Lab</p>
+                    <h2 id="agent-hero-title" class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-white">Del concepto a un agente en operación</h2>
+                    <p class="mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-slate-300">Explora los componentes, capacidades y controles que convierten un modelo en un sistema útil, conectado y supervisable.</p>
+                    <div class="mt-7 flex flex-wrap items-center gap-2 sm:gap-3" aria-label="Flujo de trabajo de un agente">
+                        <div class="agent-flow-step flex items-center gap-3">
+                            <i class="fa-solid fa-bullseye text-lg" aria-hidden="true"></i>
+                            <span class="text-xs sm:text-sm font-bold text-slate-100">Objetivo</span>
+                        </div>
+                        <i class="agent-flow-arrow fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        <div class="agent-flow-step flex items-center gap-3">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg" aria-hidden="true"></i>
+                            <span class="text-xs sm:text-sm font-bold text-slate-100">Razonamiento</span>
+                        </div>
+                        <i class="agent-flow-arrow fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+                        <div class="agent-flow-step flex items-center gap-3">
+                            <i class="fa-solid fa-shield-halved text-lg" aria-hidden="true"></i>
+                            <span class="text-xs sm:text-sm font-bold text-slate-100">Acción con control</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-3">
-                <button type="button" id="theme-toggle" aria-label="Cambiar tema: día o noche" aria-pressed="false" class="bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white font-bold text-sm px-4 py-2.5 rounded-xl transition-all flex items-center gap-3 shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
-                    <i class="fa-solid fa-sun text-amber-400 text-xl drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
-                    <span>Día / Noche</span>
-                    <i class="fa-solid fa-moon text-indigo-300 text-xl drop-shadow-[0_0_8px_rgba(165,180,252,0.6)]" aria-hidden="true"></i>
-                </button>
-                <button type="button" id="print-report" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95">
-                    <i class="fa-solid fa-file-arrow-down text-lg" aria-hidden="true"></i> Imprimir / Guardar PDF
-                </button>
-            </div>
-        </div>
-
-        <!-- Barra de pestañas táctiles interactivas -->
-        <div class="bg-slate-950 border-t border-slate-800/60 overflow-x-auto scrollbar-none">
-            <nav class="max-w-7xl mx-auto px-4 flex space-x-2 py-3 text-xs font-bold whitespace-nowrap" id="tab-nav-container" role="tablist" aria-label="Temas de la infografía">
-                <!-- Se inyecta dinámicamente con estilos responsivos -->
-            </nav>
-        </div>
-    </header>
+        </section>
 
     <!-- Lienzo de la Infografía -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">

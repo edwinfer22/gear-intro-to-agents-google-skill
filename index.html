@@ -321,7 +321,7 @@
         @media print {
             * { box-shadow: none !important; text-shadow: none !important; }
             body { background: #fff !important; color: #202124 !important; font-size: 9pt !important; print-color-adjust: economy; -webkit-print-color-adjust: economy; }
-            header button, #tab-nav-container, footer, .corner-arc, .matatena, .agent-watermark, .agent-skills-badge, .agent-flow-arrow, .roadmap-progress { display: none !important; }
+            header button, .section-shortcuts, footer, .corner-arc, .matatena, .agent-watermark, .agent-skills-badge, .agent-flow-arrow, .roadmap-progress, .code-action, .prompt-copy, .quiz-check-answer, #quiz-reset, #flashcard-status { display: none !important; }
             header { position: static !important; background: #fff !important; border: 0 !important; }
             .site-header-layout { min-height: 0 !important; padding: 0 0 6mm !important; }
             .site-title { color: #202124 !important; font-size: 16pt !important; }
@@ -331,7 +331,30 @@
             .agent-hero h2, .agent-hero p, .agent-hero-content > p { color: #202124 !important; }
             .agent-flow-step { padding: 2mm 3mm !important; background: #fff !important; border-color: #dadce0 !important; }
             .agent-flow-step span { color: #3c4043 !important; }
-            .learning-overview, .learning-roadmap, .launch-checklist, .learning-section { display: none !important; }
+            .learning-roadmap, .reasoning-engine, .roadmap-flashcards, .learning-overview, .launch-checklist, .learning-section { display: block !important; max-width: none !important; margin: 0 0 6mm !important; padding: 0 !important; break-inside: auto; }
+            .roadmap-heading { margin-bottom: 2mm !important; }
+            #tab-nav-container { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2mm; overflow: visible !important; padding: 2mm 0 !important; }
+            #tab-nav-container .roadmap-step { flex: initial !important; min-width: 0 !important; padding: 1mm !important; color: #3c4043 !important; }
+            #tab-nav-container .roadmap-step::after { display: none !important; }
+            #tab-nav-container .roadmap-node { width: 7mm !important; height: 7mm !important; border-radius: 2mm !important; background: #f1f3f4 !important; color: #3c4043 !important; border-color: #dadce0 !important; transform: none !important; }
+            #tab-nav-container .roadmap-step.is-active .roadmap-node { background: #e8f0fe !important; border-color: #4285f4 !important; color: #1967d2 !important; }
+            #tab-nav-container .roadmap-label, #tab-nav-container .roadmap-step.is-active .roadmap-label { color: #202124 !important; }
+            #tab-nav-container .roadmap-state, #tab-nav-container .roadmap-step.is-active .roadmap-state { color: #5f6368 !important; }
+            .reasoning-engine, .reasoning-step, .overview-card, .checklist-item, .learning-panel, .quiz-question, .parks-board-card, .vocab-card, .prompt-card, .code-lab, .roadmap-flashcard { background: #fff !important; color: #202124 !important; border-color: #dadce0 !important; }
+            #reasoning-title, #reasoning-scenario, .reasoning-step h4, .reasoning-step p, .flashcard-term, .flashcard-back-term, .flashcard-back-definition, .flashcard-back-example { color: #202124 !important; }
+            .reasoning-steps { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+            .roadmap-flashcard { min-height: 0 !important; perspective: none !important; break-inside: avoid; }
+            .flashcard-inner { display: block !important; min-height: 0 !important; transform: none !important; }
+            .flashcard-face { display: none !important; }
+            .flashcard-back { display: flex !important; min-height: 0 !important; transform: none !important; backface-visibility: visible !important; -webkit-backface-visibility: visible !important; }
+            .flashcard-back-example { margin-top: 2mm !important; padding-top: 0 !important; }
+            .learning-section, .learning-overview, .launch-checklist { break-inside: auto; }
+            .learning-section h2, .learning-overview h2, .launch-checklist h2, .reasoning-engine h2, .roadmap-flashcards h2 { color: #202124 !important; }
+            .learning-section p, .learning-overview p, .launch-checklist p, .reasoning-engine p { color: #3c4043 !important; }
+            .learning-section article, .overview-card, .checklist-item, .quiz-question, .vocab-card, .prompt-card { break-inside: avoid; }
+            .code-output { min-height: 0 !important; max-height: none !important; overflow: visible !important; white-space: pre-wrap !important; color: #202124 !important; background: #f8fafd !important; }
+            .code-tab[aria-selected="false"] { display: none !important; }
+            .learning-panel { padding: 0 !important; }
             main { padding: 5mm 0 !important; }
             #infographic-area { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 4mm !important; padding: 0 !important; background: #fff !important; }
             #infographic-area > section { margin: 0 !important; padding: 5mm !important; border-radius: 3mm !important; break-inside: avoid; }
@@ -438,7 +461,7 @@
                 <button type="button" id="theme-toggle" aria-label="Cambiar al modo día" aria-pressed="false" title="Cambiar al modo día" class="theme-toggle bg-slate-900 border border-slate-700 hover:border-amber-400/70 text-white transition-all shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
                     <i id="theme-icon" class="fa-solid fa-sun text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true"></i>
                 </button>
-                <button type="button" id="print-report" aria-label="Guardar esta vista como PDF" title="Guardar como PDF" class="bg-blue-600 hover:bg-blue-500 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
+                <button type="button" id="print-report" aria-label="Imprimir o guardar toda la guía como PDF" title="Descargar o guardar como PDF" class="bg-blue-600 hover:bg-blue-500 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">
                     <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                 </button>
             </div>

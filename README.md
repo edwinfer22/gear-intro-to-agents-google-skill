@@ -2,6 +2,19 @@
 
 Este repositorio contiene la arquitectura completa, demostraciones interactivas y recursos de aprendizaje para el despliegue de **Agentes de IA Autónomos y Multimodales**, utilizando infraestructura de última generación en Google Cloud y entornos distribuidos (Web y Móvil).
 
+## Guía interactiva
+
+La página principal es una guía educativa en español. Incluye:
+
+- Un roadmap de siete etapas con un motor guiado que presenta ejemplos y pasos explicables para cada tema.
+- Fichas interactivas que se voltean para mostrar definiciones y ejemplos.
+- Accesos rápidos a las secciones, biblioteca de prompts, ejemplos de Python y PowerShell, vocabulario y una evaluación con tablero de Parqués.
+- Controles de tema claro/oscuro y diseño adaptable a pantallas móviles.
+
+### Guardar la guía como PDF
+
+Pulsa el botón de descarga/PDF en la cabecera de la página y, en el diálogo de impresión del navegador, selecciona **Guardar como PDF**. La vista imprimible incluye el roadmap, las fichas y los recursos de aprendizaje; oculta los controles que no hacen falta en el documento.
+
 ## 🚀 Pilares Técnicos del Repositorio
 
 ### 1. La Era de la IA Agéntica y Agentes Autónomos
